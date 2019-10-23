@@ -21,6 +21,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import { NoPageComponent } from './no-page/no-page.component';
 import { ConfigureComponent } from './configure/configure.component';
+import { MatIconModule } from '@angular/material/icon';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { ConfigureComponent } from './configure/configure.component';
     MatInputModule,
     MatSelectModule,
     MatTableModule,
+    AngularSvgIconModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
