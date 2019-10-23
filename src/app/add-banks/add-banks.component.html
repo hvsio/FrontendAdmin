@@ -1,0 +1,84 @@
+<body>
+    <h1> Add bank to the list </h1>
+    <head>
+        <title> Add bank</title>
+    </head>
+    <div>
+        <p>
+            <mat-form-field appearance="outline" class="fields"> 
+                <mat-label>Name of the bank</mat-label>
+                <input #name 
+                        type="text" 
+                        (blur)="update(name.value)"
+                        matInput> 
+            </mat-form-field> 
+            <br>
+            <mat-form-field appearance="outline" class="fields"> 
+                <mat-label>Country origin of the bank</mat-label>
+                <mat-select>
+                            <mat-option #country
+                            value="coun"
+                            (blur)="selectCountry(coun.abbreviation)"
+                            type="text" matInput 
+                            *ngFor="let coun of countrs"
+                           > {{ coun.abbreviation }}   ({{coun.country}}) </mat-option>
+                </mat-select>
+            </mat-form-field> 
+            <br>
+            <mat-form-field appearance="outline" class="fields"> 
+                <mat-label>URL page of the bank</mat-label>
+                    <input #url 
+                    (blur)="update(url.value)"
+                    type="text" 
+                    matInput> 
+            </mat-form-field> 
+            <br>
+            <mat-form-field appearance="outline" class="fields"> 
+                <mat-label>Sender currency</mat-label>
+                <mat-select>
+                    <mat-option #currency
+                    value="c" 
+                    (blur)="selectCurrency(c.currency)"
+                    type="text" 
+                    matInput 
+                    *ngFor="let c of curr"
+                    > {{ c.currency }} </mat-option>
+                </mat-select>
+            </mat-form-field> 
+            <br>
+            <mat-form-field appearance="outline" class="fields"> 
+                <mat-label>Receiver currency Xpath</mat-label>
+                <input #toCurrXpath 
+                (blur)="update(toCurrXpath.value)"
+                type="text" 
+                matInput> 
+            </mat-form-field>
+            <br> 
+            <mat-form-field appearance="outline" class="fields"> 
+                <mat-label>Buy price Xpath</mat-label>
+                    <input #buyXpath 
+                    (blur)="update(buyXpath.value)"
+                    type="text" 
+                    matInput> 
+            </mat-form-field> 
+            <br>
+            <mat-form-field appearance="outline" class="fields"> 
+                <mat-label>Sell price Xpath</mat-label>
+                    <input #sellXpath 
+                    (blur)="update(sellXpath.value)"
+                    type="text" 
+                    matInput> 
+            </mat-form-field> 
+        </p>
+    </div>
+    <button mat-raised-button id="button" 
+    (click)="addBank(name.value, 
+    selectedCoun, 
+    url.value, 
+    selectedCurr, 
+    toCurrXpath.value, 
+    buyXpath.value, 
+    sellXpath.value)">Submit</button>
+    <br>
+    <br>
+</body>

@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+  }
+
+  .sidenav {
+    flex: 1;
+    height: 100%;
+    width: 201px;
+    background-color: var(--color-primary);
+    
+  }
+
+  .item {
+    font-size: 20px;
+    color: white;
+    line-height: 30px;
+    text-align: center;
+    
+  }
+
+
+  #logo {
+    width: 200px;
+    
+  }
+
+
+

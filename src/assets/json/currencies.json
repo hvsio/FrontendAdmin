@@ -1,0 +1,177 @@
+[
+  {
+      "currency": "AUD",
+      "unit_text": "Australian Dollar",
+      "symbol": "$"
+  },
+  {
+      "currency": "BGN",
+      "unit_text": "Bulgarian Lev",
+      "symbol": "лв"
+  },
+  {
+      "currency": "BRL",
+      "unit_text": "Brazilian Real",
+      "symbol": "R$"
+  },
+  {
+      "currency": "CAD",
+      "unit_text": "Canadian Dollar",
+      "symbol": "C$"
+  },
+  {
+      "currency": "CHF",
+      "unit_text": "Swiss Franc",
+      "symbol": "CHF"
+  },
+  {
+      "currency": "CNY",
+      "unit_text": "Yuan Renminbi",
+      "symbol": "¥"
+  },
+  {
+      "currency": "CZK",
+      "unit_text": "Czech Koruna",
+      "symbol": "Kč"
+  },
+  {
+      "currency": "DKK",
+      "unit_text": "Danish Krone",
+      "symbol": "kr"
+  },
+  {
+      "currency": "EEK",
+      "unit_text": "Kroon",
+      "symbol": null
+  },
+  {
+      "currency": "EUR",
+      "unit_text": "Euro",
+      "symbol": "€"
+  },
+  {
+      "currency": "GBP",
+      "unit_text": "Pound Sterling",
+      "symbol": "£"
+  },
+  {
+      "currency": "HKD",
+      "unit_text": "Hong Kong Dollar",
+      "symbol": "$"
+  },
+  {
+      "currency": "HRK",
+      "unit_text": "Croatian Kuna",
+      "symbol": "kn"
+  },
+  {
+      "currency": "HUF",
+      "unit_text": "Forint",
+      "symbol": "Ft"
+  },
+  {
+      "currency": "IDR",
+      "unit_text": "Rupiah",
+      "symbol": "Rp"
+  },
+  {
+      "currency": "ILS",
+      "unit_text": "New Israeli Sheqel",
+      "symbol": "₪"
+  },
+  {
+      "currency": "INR",
+      "unit_text": "Indian Rupee",
+      "symbol": null
+  },
+  {
+      "currency": "ISK",
+      "unit_text": "Iceland Krona",
+      "symbol": "kr"
+  },
+  {
+      "currency": "JPY",
+      "unit_text": "Yen",
+      "symbol": "¥"
+  },
+  {
+      "currency": "KRW",
+      "unit_text": "Won",
+      "symbol": "₩"
+  },
+  {
+      "currency": "LTL",
+      "unit_text": "Lithuanian Litas",
+      "symbol": "Lt"
+  },
+  {
+      "currency": "LVL",
+      "unit_text": "Latvian Lats",
+      "symbol": "Ls"
+  },
+  {
+      "currency": "MYR",
+      "unit_text": "Malaysian Ringgit",
+      "symbol": "RM"
+  },
+  {
+      "currency": "NOK",
+      "unit_text": "Norwegian Krone",
+      "symbol": "kr"
+  },
+  {
+      "currency": "NZD",
+      "unit_text": "New Zealand Dollar",
+      "symbol": "$"
+  },
+  {
+      "currency": "PHP",
+      "unit_text": "Philippine Peso",
+      "symbol": "Php"
+  },
+  {
+      "currency": "PLN",
+      "unit_text": "Zloty",
+      "symbol": "zł"
+  },
+  {
+      "currency": "RON",
+      "unit_text": "New Leu",
+      "symbol": "lei"
+  },
+  {
+      "currency": "RUB",
+      "unit_text": "Russian Ruble",
+      "symbol": "руб"
+  },
+  {
+      "currency": "SEK",
+      "unit_text": "Swedish Krona",
+      "symbol": "kr"
+  },
+  {
+      "currency": "SGD",
+      "unit_text": "Singapore Dollar",
+      "symbol": "$"
+  },
+  {
+      "currency": "THB",
+      "unit_text": "Baht",
+      "symbol": "฿"
+  },
+  {
+      "currency": "TRY",
+      "unit_text": "Turkish Lira",
+      "symbol": "TL"
+  },
+  {
+      "currency": "USD",
+      "unit_text": "US Dollar",
+      "symbol": "$"
+  },
+  {
+      "currency": "ZAR",
+      "unit_text": "Rand",
+      "symbol": "R"
+  }
+]
