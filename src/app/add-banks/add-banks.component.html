@@ -68,7 +68,15 @@
                     (blur)="update(sellXpath.value)"
                     type="text" 
                     matInput> 
-            </mat-form-field> 
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="fields"> 
+                <mat-label>Unit</mat-label>
+                    <input #unit 
+                    (blur)="update(unit.value)"
+                    type="text" 
+                    matInput> 
+            </mat-form-field>  
         </p>
     </div>
     <button mat-raised-button id="button" 

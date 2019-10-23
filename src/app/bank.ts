@@ -6,6 +6,7 @@ export class Bank {
   sellxpath: string;
   fromCurrency: string;
   toCurrencyXpath: string;
+  unit: string;
     constructor(
     name: string,
     country: string,
@@ -13,7 +14,8 @@ export class Bank {
     buyxpath: string,
     sellxpath: string,
     fromCurrency: string,
-    toCurrencyXpath: string ) 
+    toCurrencyXpath: string,
+    unit: string ) 
     {
         this.name = name;
         this.country = country;
@@ -21,7 +23,8 @@ export class Bank {
         this.buyxpath = buyxpath;
         this.sellxpath = sellxpath;
         this.fromCurrency = fromCurrency;
-        this.toCurrencyXpath = toCurrencyXpath
+        this.toCurrencyXpath = toCurrencyXpath;
+        this.unit = unit;
     }
     
 }

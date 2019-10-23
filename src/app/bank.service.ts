@@ -52,7 +52,7 @@ export class BankService {
     );
   }
 
-  postBank(name:string, country:string, pageurl:string, fromcurrency:string, tocurrencyxpath:string, buyxpath:string, sellxpath:string) {
+  postBank(name:string, country:string, pageurl:string, fromcurrency:string, tocurrencyxpath:string, buyxpath:string, sellxpath:string, unit: string) {
   return this.http.post(`${SERVER_URL}`, 
   {
     "name": name,
@@ -61,7 +61,8 @@ export class BankService {
     "fromcurrency": fromcurrency,
     "tocurrencyxpath": tocurrencyxpath,
     "buyxpath": buyxpath,
-    "sellxpath": sellxpath
+    "sellxpath": sellxpath,
+    "unit": unit
   }).pipe(
     catchError(this.handleError<any>('data'))
   );

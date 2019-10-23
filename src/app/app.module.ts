@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import { NoPageComponent } from './no-page/no-page.component';
+import { ConfigureComponent } from './configure/configure.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NoPageComponent } from './no-page/no-page.component';
     EditBanksComponent,
     BankDetailsComponent,
     NoPageComponent,
+    ConfigureComponent,
   ],
   imports: [
     BrowserModule,

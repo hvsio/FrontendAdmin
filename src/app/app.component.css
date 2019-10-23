@@ -12,7 +12,7 @@
   .sidenav {
     flex: 1;
     height: 100%;
-    width: 201px;
+    width: 220px;
     background-color: var(--color-primary);
     
   }
@@ -27,7 +27,7 @@
 
 
   #logo {
-    width: 200px;
+    width: 219px;
     
   }
 

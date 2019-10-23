@@ -5,12 +5,14 @@ import { EditBanksComponent } from './edit-banks/edit-banks.component';
 import { AppComponent } from './app.component';
 import { BankDetailsComponent } from './bank-details/bank-details.component';
 import { NoPageComponent } from './no-page/no-page.component';
+import { ConfigureComponent } from './configure/configure.component'
 
 const routes: Routes = [
   { path: 'add', component: AddBanksComponent },
   { path: 'edit', component: EditBanksComponent},
   { path: '', redirectTo: '/edit', pathMatch: 'full'},
   { path: 'edit/details/:id', component: BankDetailsComponent},
+  { path: 'configure', component: ConfigureComponent},
   { path: '**', component: NoPageComponent }
 ];
 

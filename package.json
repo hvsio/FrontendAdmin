@@ -12,18 +12,23 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.5",
+    "@angular/cdk": "~8.2.3",
     "@angular/common": "~8.2.5",
     "@angular/compiler": "~8.2.5",
     "@angular/core": "~8.2.5",
     "@angular/forms": "~8.2.5",
+    "@angular/material": "^8.2.3",
     "@angular/platform-browser": "~8.2.5",
     "@angular/platform-browser-dynamic": "~8.2.5",
     "@angular/router": "~8.2.5",
+    "@syncfusion/ej2-angular-charts": "*",
+    "@syncfusion/ej2-angular-grids": "*",
+    "angular-svg-icon": "^8.0.0",
+    "material": "^0.4.1",
+    "ng-a11y": "0.0.13",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1",
-    "@syncfusion/ej2-angular-grids": "*",
-    "@syncfusion/ej2-angular-charts": "*"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.4",
