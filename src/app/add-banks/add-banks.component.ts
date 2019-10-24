@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BankService } from '../bank.service';
 import currencies from 'src/assets/json/currencies.json';
 import countries from 'src/assets/json/countries.json';
+import units from 'src/assets/json/units.json';
 import { BANKS } from '../list';
 
 
@@ -19,9 +20,11 @@ export class AddBanksComponent implements OnInit {
 
   curr: any = currencies;
   countrs: any = countries;
+  unitsTemp: any = units;
   value = '';
   selectedCurr:string ='';
   selectedCoun:string='';
+  selectedUnit:string='';
 
 
 
@@ -39,6 +42,7 @@ export class AddBanksComponent implements OnInit {
   update(value: string) { this.value = value; console.log(this.value) }
   selectCurrency(value: string) { this.selectedCurr = value; console.log(this.selectedCurr) }
   selectCountry(value: string) { this.selectedCoun = value; console.log(this.selectedCoun) }
+  selectUnit(value: string) { this.selectedUnit = value; console.log(this.selectedUnit) }
 
   ngOnInit() {
 

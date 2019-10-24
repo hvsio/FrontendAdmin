@@ -1,1 +1,94 @@
-<p>bank-details works!</p>
+<h1 mat-dialog-title>Edit bank</h1>
+<div mat-dialog-content>
+    <p>
+    Name:  
+    <mat-form-field appearance="outline" class="fields" > 
+            <input #name 
+            (blur)="update(name.value)"
+            type="text" 
+            matInput
+            [(ngModel)]="data.name"
+            [disabled]="true"> 
+    </mat-form-field>
+    </p>
+
+    <p> 
+    Country:  
+    <mat-form-field appearance="outline" class="fields" > 
+            <input #country 
+            (blur)="update(country.value)"
+            type="text" 
+            matInput
+            [(ngModel)]="data.country"
+            [disabled]="true"> 
+    </mat-form-field> 
+    </p>
+
+    <p>
+    Page URL:  
+    <mat-form-field appearance="outline" class="fields"> 
+            <input #pageurl 
+            (blur)="update(pageurl.value)"
+            type="text" 
+            matInput
+            [(ngModel)]="data.pageurl"> 
+    </mat-form-field>
+    </p>
+
+    <p>
+    Sender currency:  
+    <mat-form-field appearance="outline" class="fields">
+            <input #fromCurrency 
+            (blur)="update(fromCurrency.value)"
+            type="text" 
+            matInput
+            [(ngModel)]="data.fromCurrency"
+            [disabled]="true"> 
+    </mat-form-field>
+    </p>
+
+    <p>
+    Receiver currency Xpath:  
+    <mat-form-field appearance="outline" class="fields"> 
+        <input #toCurrencyXpath 
+        (blur)="update(toCurrencyXpath.value)"
+        type="text" 
+        matInput
+        [(ngModel)]="data.toCurrencyXpath"> 
+    </mat-form-field>
+    </p>
+
+    <p>
+    Buy Xpath:  
+    <mat-form-field appearance="outline" class="fields"> 
+        <input #buyxpath 
+        (blur)="update(buyxpath.value)"
+        type="text" 
+        matInput
+        [(ngModel)]="data.buyxpath"> 
+    </mat-form-field> 
+    </p>
+
+    <p>
+    Sell Xpath:  
+    <mat-form-field appearance="outline" class="fields"> 
+        <input #sellxpath 
+        (blur)="update(sellxpath.value)"
+        type="text" 
+        matInput
+        [(ngModel)]="data.sellxpath"> 
+    </mat-form-field>
+    </p>
+
+    <p>
+    Unit:
+    <mat-form-field appearance="outline" class="fields"> 
+        <input #unit 
+        (blur)="update(unit.value)"
+        type="text" 
+        matInput
+        value="data.unit"> 
+    </mat-form-field> 
+    </p>
+
+  <button mat-button id="save-button" (click)="onSaveChanges(data)">Save</button>

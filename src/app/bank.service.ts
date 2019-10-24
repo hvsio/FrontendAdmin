@@ -45,11 +45,9 @@ export class BankService {
   }
   
 
-  deleteBank(bankId: number) {
+  deleteBank(bankId: string) {
+    console.log(`${SERVER_URL}/${bankId}`)
     return this.http.delete(`${SERVER_URL}/${bankId}`)
-    .pipe(
-      catchError(this.handleError<any>('data'))
-    );
   }
 
   postBank(name:string, country:string, pageurl:string, fromcurrency:string, tocurrencyxpath:string, buyxpath:string, sellxpath:string, unit: string) {
@@ -62,22 +60,16 @@ export class BankService {
     "tocurrencyxpath": tocurrencyxpath,
     "buyxpath": buyxpath,
     "sellxpath": sellxpath,
-    "unit": unit
+    "unit": unit,
+ 
   }).pipe(
     catchError(this.handleError<any>('data'))
   );
 }
 
-  putBank() {
-    return this.http.put(`${SERVER_URL}`, {
-      "name": " ",
-      "country": " ",
-      "pageurl": " ",
-      "fromcurrency": " ",
-      "tocurrencyxpath": " ",
-      "buyxpath": " ",
-      "sellxpath": " "
-    }).pipe(
+  putBank(bank: Bank) {
+    return this.http.put(`${SERVER_URL}`, bank
+    ).pipe(
       catchError(this.handleError<any>('data'))
     );
   }

@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
+import { Component, OnInit, Inject, PACKAGE_ROOT_URL } from '@angular/core';
 import { BankService } from '../bank.service';
 import { Bank } from '../bank';
-import { BANKS } from '../list';
-import { ActivatedRoute } from '@angular/router';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import { reject } from 'q';
 import { Observable } from 'rxjs';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
+import { BankDetailsComponent } from '../bank-details/bank-details.component';
+
 
 
 
@@ -18,28 +17,49 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class EditBanksComponent implements OnInit {
 
-  constructor (private service: BankService) { }
+  constructor (private service: BankService, private registry:MatIconRegistry, private domSanitizer: DomSanitizer, private dialog: MatDialog) { 
+    this.registry.addSvgIcon(`deleteN1`, this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/img/deleteN1.svg'));
+  }
 
   banks:any;
-  banks$: Observable<Bank[]>;
-  displayedColumns: string[] = ['name', 'pageurl', 'fromCurrency', 'country'];
+  displayedColumns: string[] = ['name', 'pageurl', 'fromCurrency', 'country', 'delete'];
   promise: boolean;
 
-  // getBanks() {
-  //   this.banks=this.route.snapshot.data.banks;
-  //   console.log(this.banks);
-  //   this.promise = true;
-  // }
+  async onClickDelete(bank: Bank) {
+    this.service.deleteBank(bank.id).subscribe();
+    this.getBanks();
+    await this.delay(1000);
+    console.log(this.banks.data);
+    
+  }
+
+  editBank(bank: Bank) {
+    console.log(bank);
+  }
   
   getBanks() {
     this.service.getBanks().subscribe(
       res => {
         this.banks = new MatTableDataSource();
         this.banks.data = res;
-        console.log(this.banks.data);
       }
     )
   }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+openDialog(bank: Bank): void {
+
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.autoFocus = true;
+  dialogConfig.width = "60%";
+  dialogConfig.data = {id: bank.id, name: bank.name, country: bank.country, pageurl: bank.pageurl, fromCurrency: bank.fromCurrency, toCurrencyXpath: bank.toCurrencyXpath, buyxpath: bank.buyxpath, sellxpath: bank.sellxpath, unit: bank.unit}; 
+
+  this.dialog.open(BankDetailsComponent, dialogConfig);
+
+}
 
   // deleteBank(bankId: number) {
   //   this.service.deleteBank(bankId)
@@ -64,11 +84,24 @@ export class EditBanksComponent implements OnInit {
   //   console.log(this.banks$);
   //   console.log(this.banks);
   // }
-
-  
-
   ngOnInit() {
    this.getBanks();
   }
 
 }
+
+// @Component({
+//   selector: 'single-edit-dialog',
+//   templateUrl: 'single-edit-dialog.html',
+// })
+// export class SingleEditDialog {
+
+//   constructor(
+//     public dialog: MatDialogRef<SingleEditDialog>,
+//     @Inject(MAT_DIALOG_DATA) public bank: Bank) {}
+
+//   onNoClick(): void {
+//     this.dialog.close();
+//   }
+
+
