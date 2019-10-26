@@ -1,13 +1,11 @@
-import { Component, OnInit, Inject, PACKAGE_ROOT_URL } from '@angular/core';
-import { BankService } from '../bank.service';
-import { Bank } from '../bank';
-import { Observable } from 'rxjs';
-import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
-import { MatIconRegistry } from "@angular/material/icon";
-import { DomSanitizer } from "@angular/platform-browser";
-import { BankDetailsComponent } from '../bank-details/bank-details.component';
-
-
+import {Component, OnInit, Inject, PACKAGE_ROOT_URL} from '@angular/core';
+import {BankService} from '../bank.service';
+import {Bank} from '../bank';
+import {Observable} from 'rxjs';
+import {MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material';
+import {MatIconRegistry} from "@angular/material/icon";
+import {DomSanitizer} from "@angular/platform-browser";
+import {BankDetailsComponent} from '../bank-details/bank-details.component';
 
 
 @Component({
@@ -17,11 +15,11 @@ import { BankDetailsComponent } from '../bank-details/bank-details.component';
 })
 export class EditBanksComponent implements OnInit {
 
-  constructor (private service: BankService, private registry:MatIconRegistry, private domSanitizer: DomSanitizer, private dialog: MatDialog) { 
+  constructor(private service: BankService, private registry: MatIconRegistry, private domSanitizer: DomSanitizer, private dialog: MatDialog) {
     this.registry.addSvgIcon(`deleteN1`, this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/img/deleteN1.svg'));
   }
 
-  banks:any;
+  banks: any;
   displayedColumns: string[] = ['name', 'pageurl', 'fromCurrency', 'country', 'delete'];
   promise: boolean;
 
@@ -30,13 +28,13 @@ export class EditBanksComponent implements OnInit {
     this.getBanks();
     await this.delay(1000);
     console.log(this.banks.data);
-    
+
   }
 
   editBank(bank: Bank) {
     console.log(bank);
   }
-  
+
   getBanks() {
     this.service.getBanks().subscribe(
       res => {
@@ -47,19 +45,29 @@ export class EditBanksComponent implements OnInit {
   }
 
   delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-openDialog(bank: Bank): void {
+  openDialog(bank: Bank): void {
 
-  const dialogConfig = new MatDialogConfig();
-  dialogConfig.autoFocus = true;
-  dialogConfig.width = "60%";
-  dialogConfig.data = {id: bank.id, name: bank.name, country: bank.country, pageurl: bank.pageurl, fromCurrency: bank.fromCurrency, toCurrencyXpath: bank.toCurrencyXpath, buyxpath: bank.buyxpath, sellxpath: bank.sellxpath, unit: bank.unit}; 
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.data = {
+      id: bank.id,
+      name: bank.name,
+      country: bank.country,
+      pageurl: bank.pageurl,
+      fromCurrency: bank.fromCurrency,
+      toCurrencyXpath: bank.toCurrencyXpath,
+      buyxpath: bank.buyxpath,
+      sellxpath: bank.sellxpath,
+      unit: bank.unit
+    };
 
-  this.dialog.open(BankDetailsComponent, dialogConfig);
+    this.dialog.open(BankDetailsComponent, dialogConfig);
 
-}
+  }
 
   // deleteBank(bankId: number) {
   //   this.service.deleteBank(bankId)
@@ -76,8 +84,8 @@ openDialog(bank: Bank): void {
   //       for (let i in data) {
   //         var bankie = new Bank(data[i].name, data[i].country, data[i].pageurl, data[i].buyxpath, data[i].sellxpath, data[i].fromCurrency, data[i].toCurrencyXpath);
   //         this.banks.push(bankie);
-  //       } 
-       
+  //       }
+
   //     },
   //     err => console.error(err)
   //   )
@@ -85,7 +93,7 @@ openDialog(bank: Bank): void {
   //   console.log(this.banks);
   // }
   ngOnInit() {
-   this.getBanks();
+    this.getBanks();
   }
 
 }

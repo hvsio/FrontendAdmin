@@ -46,7 +46,7 @@ export class BankService {
   }
 
 
-  deleteBank(bankId: number) {
+  deleteBank(bankId: string) {
     return this.http.delete(`${SERVER_URL}/${bankId}`)
       .pipe(
         catchError(this.handleError<any>('data'))
