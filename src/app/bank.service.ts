@@ -6,9 +6,10 @@ import {BANKS} from './list';
 import {catchError, map, tap} from 'rxjs/operators';
 import {delay} from 'rxjs/internal/operators';
 import {ControlContainer} from '@angular/forms';
+import { environment } from '../environments/environment';
 
-
-const SERVER_URL: string = 'http://localhost:8000/banks';
+const baseUrl = environment.scrapperConfig;
+const SERVER_URL: string = baseUrl + '/banks';
 
 @Injectable({
   providedIn: 'root',
