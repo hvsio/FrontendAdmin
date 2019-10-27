@@ -24,3 +24,8 @@
 h1 {
     padding-bottom: 0;
 }
+
+::ng-deep .snackbar {
+    background: var(--color-snackbar) !important;
+    color: black !important
+}

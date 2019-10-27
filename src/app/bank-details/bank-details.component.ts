@@ -28,6 +28,7 @@ export class BankDetailsComponent implements OnInit {
   value = '';
   selectedCurr:string ='';
   selectedCoun:string='';
+  selectedUnit:string='';
   options: FormGroup;
 
   constructor(private service: BankService, 
@@ -62,6 +63,7 @@ export class BankDetailsComponent implements OnInit {
   update(value: string) { this.value = value; console.log(this.value) }
   selectCurrency(value: string) { this.selectedCurr = value; console.log(this.selectedCurr) }
   selectCountry(value: string) { this.selectedCoun = value; console.log(this.selectedCoun) }
+  selectUnit(value: string) { this.selectedUnit = value; console.log(this.selectedUnit) }
 
   onSaveChanges(data: Bank) {
     console.log(data)

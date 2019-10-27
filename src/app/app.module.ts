@@ -25,6 +25,8 @@ import { ConfigureComponent } from './configure/configure.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DeleteWindowComponent } from './delete-window/delete-window.component';
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     BankDetailsComponent,
     NoPageComponent,
     ConfigureComponent,
+    DeleteWindowComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,10 +56,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatIconModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule,
     
   ],
-  entryComponents: [BankDetailsComponent],
+  entryComponents: [BankDetailsComponent, DeleteWindowComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

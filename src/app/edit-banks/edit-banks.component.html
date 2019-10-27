@@ -5,31 +5,31 @@
 
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef> Name </th>
-              <td mat-cell *matCellDef="let bank"> {{bank.name}} </td>
+              <td mat-cell *matCellDef="let bank" (click)="openDialog(bank)"> {{bank.name}} </td>
             </ng-container>
           
             <ng-container matColumnDef="pageurl">
               <th mat-header-cell *matHeaderCellDef> Page URL </th>
-              <td mat-cell *matCellDef="let bank"> {{bank.pageurl}} </td>
+              <td mat-cell *matCellDef="let bank" (click)="openDialog(bank)"> {{bank.pageurl}} </td>
             </ng-container>
             
             <ng-container matColumnDef="fromCurrency">
               <th mat-header-cell *matHeaderCellDef> Origin currency </th>
-              <td mat-cell *matCellDef="let bank"> {{bank.fromCurrency}} </td>
+              <td mat-cell *matCellDef="let bank" (click)="openDialog(bank)"> {{bank.fromCurrency}} </td>
             </ng-container>
           
             <ng-container matColumnDef="country">
               <th mat-header-cell *matHeaderCellDef> Origin country </th>
-              <td mat-cell *matCellDef="let bank"> {{bank.country}} </td>
+              <td mat-cell *matCellDef="let bank" (click)="openDialog(bank)"> {{bank.country}} </td>
             </ng-container>
 
             <ng-container matColumnDef="delete">
               <th mat-header-cell *matHeaderCellDef>  </th>
-              <td mat-cell *matCellDef="let bank"> <button mat-button (click)=onClickDelete(bank)> <mat-icon svgIcon="deleteN1"></mat-icon></button> </td>
+              <td mat-cell *matCellDef="let bank"> <button mat-button (click)=openDeleteDialog(bank)> <mat-icon svgIcon="deleteN1"></mat-icon></button> </td>
             </ng-container>
           
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
 
     </div>

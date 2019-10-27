@@ -1,14 +1,11 @@
 import { Component, OnInit, Inject, PACKAGE_ROOT_URL } from '@angular/core';
 import { BankService } from '../bank.service';
 import { Bank } from '../bank';
-import { Observable } from 'rxjs';
 import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { BankDetailsComponent } from '../bank-details/bank-details.component';
-
-
-
+import { DeleteWindowComponent } from '../delete-window/delete-window.component';
 
 @Component({
   selector: 'app-edit-banks',
@@ -23,18 +20,27 @@ export class EditBanksComponent implements OnInit {
 
   banks:any;
   displayedColumns: string[] = ['name', 'pageurl', 'fromCurrency', 'country', 'delete'];
-  promise: boolean;
 
   async onClickDelete(bank: Bank) {
     this.service.deleteBank(bank.id).subscribe();
     this.getBanks();
     await this.delay(1000);
     console.log(this.banks.data);
-    
   }
 
-  editBank(bank: Bank) {
-    console.log(bank);
+
+  openDeleteDialog(bank: Bank) {
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.autoFocus = true;
+  dialogConfig.width = "30%";
+  dialogConfig.data = bank;
+  const dialogRef = this.dialog.open(DeleteWindowComponent, dialogConfig);
+  dialogRef.afterClosed().subscribe(
+    async data => { await this.delay(500);
+      this.getBanks();
+      
+    }
+  )
   }
   
   getBanks() {
@@ -57,7 +63,14 @@ openDialog(bank: Bank): void {
   dialogConfig.width = "60%";
   dialogConfig.data = {id: bank.id, name: bank.name, country: bank.country, pageurl: bank.pageurl, fromCurrency: bank.fromCurrency, toCurrencyXpath: bank.toCurrencyXpath, buyxpath: bank.buyxpath, sellxpath: bank.sellxpath, unit: bank.unit}; 
 
-  this.dialog.open(BankDetailsComponent, dialogConfig);
+  const dialogRef = this.dialog.open(BankDetailsComponent, dialogConfig);
+
+  dialogRef.afterClosed().subscribe(
+    async data => { await this.delay(500);
+      this.getBanks();
+      
+    }
+  )
 
 }
 
@@ -86,6 +99,7 @@ openDialog(bank: Bank): void {
   // }
   ngOnInit() {
    this.getBanks();
+  
   }
 
 }

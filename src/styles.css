@@ -16,7 +16,10 @@ h1 {
 }
 
 :root {
-    --color-primary: #13566A;
+    --color-primary: #055A6E;
+    --color-snackbar: #57B8C1;
+    --color-greyish: #C4D8DD;
+    --color-red: #DC3D62;
 }
 
 @font-face {

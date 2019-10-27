@@ -3,7 +3,12 @@ import { BankService } from '../bank.service';
 import currencies from 'src/assets/json/currencies.json';
 import countries from 'src/assets/json/countries.json';
 import units from 'src/assets/json/units.json';
-import { BANKS } from '../list';
+import {DOWN_ARROW, SPACE, ENTER, UP_ARROW} from '@angular/cdk/keycodes';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http'; 
+import { config } from 'rxjs';
+
+
 
 
 @Component({
@@ -15,8 +20,9 @@ import { BANKS } from '../list';
 
 
 export class AddBanksComponent implements OnInit {
+  
 
-  constructor(private service: BankService) { }
+  constructor(private service: BankService, private snackBar: MatSnackBar) { }
 
   curr: any = currencies;
   countrs: any = countries;
@@ -25,16 +31,34 @@ export class AddBanksComponent implements OnInit {
   selectedCurr:string ='';
   selectedCoun:string='';
   selectedUnit:string='';
+  position: MatSnackBarHorizontalPosition = 'right';
+  config = new MatSnackBarConfig();
 
+  configuration() {
+    this.config.horizontalPosition = this.position;
+    this.config.duration = 2000;
+    this.config.panelClass = ['snackbar'];
+  }
 
+  openSnackBar(message: string, action: string) {
+    this.configuration();
+    this.snackBar.open(message, undefined, this.config)
+    
+  }
 
   addBank(name:string, country:string, pageurl:string, fromcurrency:string, tocurrencyxpath:string, buyxpath:string, sellxpath:string, unit: string) {
     this.service.postBank(name, country, pageurl, fromcurrency, tocurrencyxpath, buyxpath, sellxpath, unit).subscribe(
       data => {
-        console.log("POST executed", data); 
+        console.log("POST executed", data) 
+        if (data==undefined) {
+          this.openSnackBar("Failure while adding the bank", "");
+        } else {
+            this.openSnackBar("Bank added successfully!", "");
+          }
+        
       },
-      err => {
-        console.log("Error ", err)
+      (error: HttpErrorResponse) => {
+        console.log("Error ", error)
       }
     )
   };

@@ -1,0 +1,13 @@
+#yes-button {
+    background: var(--color-red);
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#no-button {
+    background: var(--color-greyish);
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+}
