@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component, OnInit, Inject, PACKAGE_ROOT_URL } from '@angular/core';
 import { BankService } from '../bank.service';
 import { Bank } from '../bank';
@@ -7,17 +6,6 @@ import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { BankDetailsComponent } from '../bank-details/bank-details.component';
 import { DeleteWindowComponent } from '../delete-window/delete-window.component';
-=======
-import {Component, OnInit, Inject, PACKAGE_ROOT_URL} from '@angular/core';
-import {BankService} from '../bank.service';
-import {Bank} from '../bank';
-import {Observable} from 'rxjs';
-import {MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material';
-import {MatIconRegistry} from "@angular/material/icon";
-import {DomSanitizer} from "@angular/platform-browser";
-import {BankDetailsComponent} from '../bank-details/bank-details.component';
-
->>>>>>> f4ebeab31cd72d6175eeab76397f92774a38325e
 
 @Component({
   selector: 'app-edit-banks',
@@ -38,10 +26,6 @@ export class EditBanksComponent implements OnInit {
     this.getBanks();
     await this.delay(1000);
     console.log(this.banks.data);
-<<<<<<< HEAD
-=======
-
->>>>>>> f4ebeab31cd72d6175eeab76397f92774a38325e
   }
 
 
@@ -72,16 +56,6 @@ export class EditBanksComponent implements OnInit {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-<<<<<<< HEAD
-  const dialogRef = this.dialog.open(BankDetailsComponent, dialogConfig);
-
-  dialogRef.afterClosed().subscribe(
-    async data => { await this.delay(500);
-      this.getBanks();
-      
-    }
-  )
-=======
   openDialog(bank: Bank): void {
 
     const dialogConfig = new MatDialogConfig();
@@ -100,9 +74,14 @@ export class EditBanksComponent implements OnInit {
     };
 
     this.dialog.open(BankDetailsComponent, dialogConfig);
->>>>>>> f4ebeab31cd72d6175eeab76397f92774a38325e
 
   }
+
+  // dialogRef.afterClosed().subscribe(
+  //   async data => { await this.delay(500);
+  //     this.getBanks();
+      
+  //   }
 
   // deleteBank(bankId: number) {
   //   this.service.deleteBank(bankId)
@@ -128,12 +107,8 @@ export class EditBanksComponent implements OnInit {
   //   console.log(this.banks);
   // }
   ngOnInit() {
-<<<<<<< HEAD
    this.getBanks();
   
-=======
-    this.getBanks();
->>>>>>> f4ebeab31cd72d6175eeab76397f92774a38325e
   }
 
 }
