@@ -4,7 +4,7 @@ import { Bank } from '../bank';
 import currencies from 'src/assets/json/currencies.json';
 import countries from 'src/assets/json/countries.json';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-bank-details',
@@ -28,8 +28,10 @@ export class BankDetailsComponent implements OnInit {
   value = '';
   selectedCurr:string ='';
   selectedCoun:string='';
-  selectedUnit:string='';
+  selectedUnit: string='';
   options: FormGroup;
+
+  
 
   constructor(private service: BankService, 
     @Inject(MAT_DIALOG_DATA) public data: Bank,
@@ -45,9 +47,9 @@ export class BankDetailsComponent implements OnInit {
       this.unit = data.unit;
 
       this.options = fb.group({
-        assignedCoun: data.country,
-        assignedCurr: data.fromCurrency}); 
-     }
+        unit: this.data.unit
+      });
+    }
 
   updateBank(bank: Bank) {
     this.service.putBank(bank).subscribe(
@@ -63,21 +65,15 @@ export class BankDetailsComponent implements OnInit {
   update(value: string) { this.value = value; console.log(this.value) }
   selectCurrency(value: string) { this.selectedCurr = value; console.log(this.selectedCurr) }
   selectCountry(value: string) { this.selectedCoun = value; console.log(this.selectedCoun) }
-  selectUnit(value: string) { this.selectedUnit = value; console.log(this.selectedUnit) }
+  selectUnit(value: string) { this.data.unit = value; console.log(this.data.unit + "selectUnit"); }
 
   onSaveChanges(data: Bank) {
-    console.log(data)
     this.updateBank(data);
     this.dialog.close();
   }
 
-  // getBank(): void {
-  //   const id: number = +this.route.snapshot.paramMap.get('id');
-  //   this.service.getBank(id)
-  //   .subscribe(bank => this.bank = bank);
-  // }
-
   ngOnInit() { 
+    console.log(this.options.value)
   }
 
 }

@@ -50,11 +50,15 @@ export class AddBanksComponent implements OnInit {
     this.service.postBank(name, country, pageurl, fromcurrency, tocurrencyxpath, buyxpath, sellxpath, unit).subscribe(
       data => {
         console.log("POST executed", data) 
+        if (name=="" || country=="" || pageurl=="" || fromcurrency=="" || tocurrencyxpath=="" || buyxpath=="" || sellxpath=="" || unit=="") {
+          this.openSnackBar("Please fill all the areas", "");
+        } else {
         if (data==undefined) {
           this.openSnackBar("Failure while adding the bank", "");
         } else {
             this.openSnackBar("Bank added successfully!", "");
           }
+        }
         
       },
       (error: HttpErrorResponse) => {

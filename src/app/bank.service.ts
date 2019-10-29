@@ -2,15 +2,16 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, of, pipe} from "rxjs";
 import {Bank} from './bank';
-import {BANKS} from './list';
 import { catchError, map, tap } from 'rxjs/operators';
 import { delay } from 'rxjs/internal/operators';
 import { ControlContainer } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 
 
-const SERVER_URL: string = 'http://localhost:8000/banks';
+const SERVER_URL: string = environment.scrapperConfig + '/banks';
+
 
 @Injectable({
   providedIn: 'root',
@@ -32,21 +33,6 @@ export class BankService {
       catchError(this.handleError<any>('data'))
     );
   }
-
-  // getBanks(): Observable<Bank[]> {
-  //   this.http.get(`${SERVER_URL}`).subscribe (
-  //     (data:Bank[]) => {
-  //       for (let i in data) {
-  //         var bankie = new Bank(data[i].name, data[i].country, data[i].pageurl, data[i].buyxpath, data[i].sellxpath, data[i].fromCurrency, data[i].toCurrencyXpath);
-  //         BANKS.push(bankie);
-  //         console.log("Bank service is working");
-  //       }
-  //       console.log(BANKS);
-  //     }
-  //   )
-    
-  //   return of (BANKS);
-  // }
 
     getBanks() {
       return this.http.get(`${SERVER_URL}`)

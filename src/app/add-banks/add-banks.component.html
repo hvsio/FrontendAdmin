@@ -20,6 +20,7 @@
                             <mat-option #country
                             value="coun"
                             (blur)="selectCountry(coun.abbreviation)"
+                            (keyup.enter)="update(country.value)"
                             type="text" matInput 
                             *ngFor="let coun of countrs"
                            > {{ coun.abbreviation }}   ({{coun.country}}) </mat-option>

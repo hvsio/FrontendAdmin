@@ -1,4 +1,5 @@
-<h1 mat-dialog-title>Edit bank</h1>
+
+<h1 mat-dialog-title cdkFocusInitial>Edit bank</h1>
 <div mat-dialog-content>
     <p>
     Name:  
@@ -80,15 +81,44 @@
     </mat-form-field>
     </p>
 
+    <form [formGroup]="options">
     <p>
     Unit:
-    <mat-form-field appearance="outline" class="fields"> 
-        <input #unit 
-        (blur)="update(unit.value)"
-        type="text" 
-        matInput
-        [(ngModel)]="data.unit"> 
+    <mat-form-field appearance="outline" class="fields" > 
+        <mat-select formControlName="unit">
+            <mat-option #original
+            (blur)="selectUnit(original.value)"
+            type="text" 
+            matInput
+            value={{data.unit}}> {{data.unit}} </mat-option>
+            <mat-option #first
+            (blur)="selectUnit(first.value)"
+            type="text" 
+            matInput
+            value="M100"> M100 </mat-option>
+            <mat-option #sec
+            (blur)="selectUnit(sec.value)"
+            type="text" 
+            matInput
+            value="M1000"> M1000 </mat-option>
+            <mat-option #third
+            (blur)="selectUnit(third.value)"
+            type="text" 
+            matInput
+            value="exchange"> exchange </mat-option>
+            <mat-option #fourth
+            (blur)="selectUnit(fourth.value)"
+            type="text" 
+            matInput
+            value="percentage"> percentage </mat-option>
+        </mat-select>
+        
     </mat-form-field> 
     </p>
+    </form>
 
-  <button mat-button id="save-button" (click)="onSaveChanges(data)">Save</button>
+
+<mat-dialog-actions> 
+    <button mat-button id="save-button" (click)="onSaveChanges(data)">Save</button>
+</mat-dialog-actions>
+ 
