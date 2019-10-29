@@ -26,3 +26,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 # frontend-admin
+
+#For Ubuntu users
+for Ubuntu 18.04 user.
+    
+step 1 : npm install --save @angular/material @angular/cdk
+
+step 2 : npm install --save @angular/animations
