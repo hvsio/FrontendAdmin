@@ -26,17 +26,15 @@ export class BankDetailsComponent implements OnInit {
   curr: any = currencies;
   countrs: any = countries;
   value = '';
-  selectedCurr:string ='';
-  selectedCoun:string='';
-  selectedUnit: string='';
+  selectedCurr = '';
+  selectedCoun = '';
+  selectedUnit = '';
   options: FormGroup;
 
-  
-
-  constructor(private service: BankService, 
-    @Inject(MAT_DIALOG_DATA) public data: Bank,
-    fb: FormBuilder,
-    public dialog: MatDialogRef<BankDetailsComponent>) {
+  constructor(private service: BankService,
+              @Inject(MAT_DIALOG_DATA) public data: Bank,
+              fb: FormBuilder,
+              public dialog: MatDialogRef<BankDetailsComponent>) {
       this.name = data.name;
       this.country = data.country;
       this.pageurl = data.pageurl;
@@ -57,23 +55,24 @@ export class BankDetailsComponent implements OnInit {
         console.log();
       },
       err => {
-        console.log("Error while updating", err)
+        console.log('Error while updating', err);
       }
-    )
-  };
+    );
+  }
 
-  update(value: string) { this.value = value; console.log(this.value) }
-  selectCurrency(value: string) { this.selectedCurr = value; console.log(this.selectedCurr) }
-  selectCountry(value: string) { this.selectedCoun = value; console.log(this.selectedCoun) }
-  selectUnit(value: string) { this.data.unit = value; console.log(this.data.unit + "selectUnit"); }
+  update(value: string) { this.value = value; console.log(this.value); }
+  selectCurrency(value: string) { this.selectedCurr = value; console.log(this.selectedCurr); }
+  selectCountry(value: string) { this.selectedCoun = value; console.log(this.selectedCoun); }
+  selectUnit(value: string) { this.data.unit = value; console.log(this.data.unit + 'selectUnit'); }
 
   onSaveChanges(data: Bank) {
     this.updateBank(data);
+
     this.dialog.close();
   }
 
-  ngOnInit() { 
-    console.log(this.options.value)
+  ngOnInit() {
+    console.log(this.options.value);
   }
 
 }

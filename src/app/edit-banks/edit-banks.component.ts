@@ -1,11 +1,14 @@
 import { Component, OnInit, Inject, PACKAGE_ROOT_URL } from '@angular/core';
 import { BankService } from '../bank.service';
 import { Bank } from '../bank';
-import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
-import { MatIconRegistry } from "@angular/material/icon";
-import { DomSanitizer } from "@angular/platform-browser";
+
 import { BankDetailsComponent } from '../bank-details/bank-details.component';
 import { DeleteWindowComponent } from '../delete-window/delete-window.component';
+
+import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-edit-banks',
@@ -14,33 +17,26 @@ import { DeleteWindowComponent } from '../delete-window/delete-window.component'
 })
 export class EditBanksComponent implements OnInit {
 
-  constructor(private service: BankService, private registry: MatIconRegistry, private domSanitizer: DomSanitizer, private dialog: MatDialog) {
+  constructor(private service: BankService, private registry: MatIconRegistry,
+              private domSanitizer: DomSanitizer, private dialog: MatDialog) {
     this.registry.addSvgIcon(`deleteN1`, this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/img/deleteN1.svg'));
   }
 
   banks: any;
   displayedColumns: string[] = ['name', 'pageurl', 'fromCurrency', 'country', 'delete'];
 
-  async onClickDelete(bank: Bank) {
-    this.service.deleteBank(bank.id).subscribe();
-    this.getBanks();
-    await this.delay(1000);
-    console.log(this.banks.data);
-  }
-
 
   openDeleteDialog(bank: Bank) {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.autoFocus = true;
-  dialogConfig.width = "30%";
+  dialogConfig.width = '30%';
   dialogConfig.data = bank;
   const dialogRef = this.dialog.open(DeleteWindowComponent, dialogConfig);
   dialogRef.afterClosed().subscribe(
     async data => { await this.delay(500);
-      this.getBanks();
-      
+                    this.getBanks();
     }
-  )
+  );
   }
 
   getBanks() {
@@ -49,18 +45,13 @@ export class EditBanksComponent implements OnInit {
         this.banks = new MatTableDataSource();
         this.banks.data = res;
       }
-    )
-  }
-
-  delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    );
   }
 
   openDialog(bank: Bank): void {
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = '60%';
     dialogConfig.data = {
       id: bank.id,
       name: bank.name,
@@ -72,59 +63,22 @@ export class EditBanksComponent implements OnInit {
       sellxpath: bank.sellxpath,
       unit: bank.unit
     };
-
-    this.dialog.open(BankDetailsComponent, dialogConfig);
-
+    const dialogRef = this.dialog.open(BankDetailsComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      async data => { await this.delay(500);
+                      this.getBanks();
+      }
+  );
   }
 
-  // dialogRef.afterClosed().subscribe(
-  //   async data => { await this.delay(500);
-  //     this.getBanks();
-      
-  //   }
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-  // deleteBank(bankId: number) {
-  //   this.service.deleteBank(bankId)
-  //     .subscribe(
-  //       data => console.log(`${bankId} deleted`),
-  //       err => console.error(err)
-  //     );
-  // }
-
-  // getBanks() {
-  //   this.service.getBanks()
-  //   .subscribe (
-  //     (data:Bank[]) => {
-  //       for (let i in data) {
-  //         var bankie = new Bank(data[i].name, data[i].country, data[i].pageurl, data[i].buyxpath, data[i].sellxpath, data[i].fromCurrency, data[i].toCurrencyXpath);
-  //         this.banks.push(bankie);
-  //       }
-
-  //     },
-  //     err => console.error(err)
-  //   )
-  //   console.log(this.banks$);
-  //   console.log(this.banks);
-  // }
   ngOnInit() {
    this.getBanks();
-  
   }
 
 }
-
-// @Component({
-//   selector: 'single-edit-dialog',
-//   templateUrl: 'single-edit-dialog.html',
-// })
-// export class SingleEditDialog {
-
-//   constructor(
-//     public dialog: MatDialogRef<SingleEditDialog>,
-//     @Inject(MAT_DIALOG_DATA) public bank: Bank) {}
-
-//   onNoClick(): void {
-//     this.dialog.close();
-//   }
 
 

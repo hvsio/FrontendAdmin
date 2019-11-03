@@ -13,9 +13,9 @@ export class DeleteWindowComponent implements OnInit {
 
   bank: Bank;
 
-  constructor(private service: BankService, 
-    @Inject(MAT_DIALOG_DATA) public data: Bank,
-    public dialog: MatDialogRef<DeleteWindowComponent>) {
+  constructor(private service: BankService,
+              @Inject(MAT_DIALOG_DATA) public data: Bank,
+              public dialog: MatDialogRef<DeleteWindowComponent>) {
       this.bank = data;
      }
 

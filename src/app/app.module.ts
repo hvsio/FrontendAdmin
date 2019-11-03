@@ -12,20 +12,20 @@ import { BankDetailsComponent } from './bank-details/bank-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material';
-import {MatSelectModule} from '@angular/material/select';
-import {MatTableModule} from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { NoPageComponent } from './no-page/no-page.component';
 import { ConfigureComponent } from './configure/configure.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DeleteWindowComponent } from './delete-window/delete-window.component';
 
 
@@ -57,8 +57,7 @@ import { DeleteWindowComponent } from './delete-window/delete-window.component';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule,
-    
+    MatSnackBarModule
   ],
   entryComponents: [BankDetailsComponent, DeleteWindowComponent],
   providers: [],

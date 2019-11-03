@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {BankService} from './bank.service'
-import { Bank } from './bank';
 
 
 @Component({
@@ -12,7 +10,7 @@ import { Bank } from './bank';
 export class AppComponent {
   title = 'front';
 
-  constructor (private service:BankService) { }
+  constructor() { }
 
 
 }
