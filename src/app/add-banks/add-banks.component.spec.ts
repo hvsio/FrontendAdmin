@@ -7,6 +7,8 @@ import {MatInputModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {By} from '@angular/platform-browser';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 fdescribe('AddBanksComponent', () => {
@@ -27,7 +29,7 @@ fdescribe('AddBanksComponent', () => {
     component = fixture.componentInstance;
     service = TestBed.get(BankService);
     snackbar = TestBed.get(MatSnackBar);
-    // service = new BankService(http);
+    http = TestBed.get(HttpClient);
   }));
 
   fit('should create', () => {
@@ -36,38 +38,19 @@ fdescribe('AddBanksComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should reject the bank - unsufficient info', async () => {
+  fit('should click', () => {
     const add = new AddBanksComponent(service, snackbar);
-    await fixture.whenStable();
+    const button = fixture.debugElement.query(By.css('button')).triggerEventHandler('click', null);
     fixture.detectChanges();
-    const data = {
-      'name': 'Danske Bank',
-      'country': 'DK',
-      'pageurl': 'http://danskebank.dk',
-      'fromcurrency': 'DKK',
-      'tocurrencyxpath': 'abcdefghijklm',
-      'buyxpath': 'abcdefghijklm',
-      'sellxpath': 'abcdefghijklm',
-      'unit': '',
+  });
 
-    };
-    // const obsMock = jasmine.createSpyObj('obsMock', ['subscribe']);
-    // obsMock.subscribe.callFake((callback) => {
-    //   callback(data);
-    // });
-    //
-    // const serv = jasmine.createSpyObj('service', ['postBank']);
-    //
-    // serv.postBank.and.returnValue(obsMock);
+  fit('form invalid when empty', () => {
+    const name = fixture.debugElement.query(By.css('#name'));
+    name.nativeElement.value = 'name';
+  });
 
-    add.addBank('Danske Bank', 'DK',
-      'http://danskebank.dk', 'DKK',
-      'abcdefghijklm', 'abcdefghijklm',
-      'abcdefghijklm', '');
-    console.log('mock ' + add.getAddedToDB());
-    console.log('mock ' + add.getExistingInDB());
-    expect(add.getAddedToDB()).toEqual(false);
-    expect(add.getExistingInDB()).toEqual(false);
+
+
 
     //  booleans = component.addBank('Danske Bank', 'DK',
     //   'http://danskebank.dk', 'DKK',
@@ -117,7 +100,6 @@ fdescribe('AddBanksComponent', () => {
     //   'abcdefghijklm', 'M100');
     // expect(fixture.componentInstance.addedToDB).toEqual(false);
     // expect(fixture.componentInstance.bankExistsinDB).toEqual(false);
-  });
 
   // fit('should reject the bank - already exists in DB', () => {
   //
@@ -148,3 +130,4 @@ fdescribe('AddBanksComponent', () => {
 
 
 });
+

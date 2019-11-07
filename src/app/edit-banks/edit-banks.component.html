@@ -1,23 +1,23 @@
 
-    <h1>List of the banks</h1> 
-    <div>        
+    <h1>List of the banks</h1>
+    <div>
         <table mat-table [dataSource]="banks">
 
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef> Name </th>
               <td mat-cell *matCellDef="let bank" (click)="openDialog(bank)"> {{bank.name}} </td>
             </ng-container>
-          
+
             <ng-container matColumnDef="pageurl">
               <th mat-header-cell *matHeaderCellDef> Page URL </th>
               <td mat-cell *matCellDef="let bank" (click)="openDialog(bank)"> {{bank.pageurl}} </td>
             </ng-container>
-            
+
             <ng-container matColumnDef="fromCurrency">
               <th mat-header-cell *matHeaderCellDef> Origin currency </th>
               <td mat-cell *matCellDef="let bank" (click)="openDialog(bank)"> {{bank.fromCurrency}} </td>
             </ng-container>
-          
+
             <ng-container matColumnDef="country">
               <th mat-header-cell *matHeaderCellDef> Origin country </th>
               <td mat-cell *matCellDef="let bank" (click)="openDialog(bank)"> {{bank.country}} </td>
@@ -27,10 +27,17 @@
               <th mat-header-cell *matHeaderCellDef>  </th>
               <td mat-cell *matCellDef="let bank"> <button mat-button (click)=openDeleteDialog(bank)> <mat-icon svgIcon="deleteN1"></mat-icon></button> </td>
             </ng-container>
-          
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
+
+      <mat-card *ngIf="isLoading"
+                style="display: flex; justify-content: center; align-items: center">
+        <mat-progress-spinner class="spinner"
+                              mode="indeterminate">
+        </mat-progress-spinner>
+      </mat-card>
 
     </div>
 

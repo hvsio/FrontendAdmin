@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AddBanksComponent } from './add-banks/add-banks.component';
 import { EditBanksComponent } from './edit-banks/edit-banks.component';
-import { AppComponent } from './app.component';
 import { BankDetailsComponent } from './bank-details/bank-details.component';
 import { NoPageComponent } from './no-page/no-page.component';
-import { ConfigureComponent } from './configure/configure.component'
+import { ConfigureComponent } from './configure/configure.component';
 
 const routes: Routes = [
   { path: 'add', component: AddBanksComponent },

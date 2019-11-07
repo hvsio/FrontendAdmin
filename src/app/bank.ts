@@ -8,6 +8,8 @@ export class Bank {
   toCurrencyXpath: string;
   unit: string;
   id: string;
+  iscrossinverted: boolean;
+  exchangeunitxpath: string;
     constructor(
     name: string,
     country: string,
@@ -17,8 +19,9 @@ export class Bank {
     fromCurrency: string,
     toCurrencyXpath: string,
     unit: string,
-     ) 
-    {
+    iscrossinverted: boolean,
+    exchangeunitxpath: string,
+     ) {
         this.name = name;
         this.country = country;
         this.pageurl = pageurl;
@@ -27,7 +30,8 @@ export class Bank {
         this.fromCurrency = fromCurrency;
         this.toCurrencyXpath = toCurrencyXpath;
         this.unit = unit;
-
+        this.iscrossinverted = iscrossinverted;
+        this.exchangeunitxpath = exchangeunitxpath;
     }
-    
+
 }

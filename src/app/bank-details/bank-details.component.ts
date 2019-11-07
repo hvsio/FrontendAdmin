@@ -1,10 +1,9 @@
 import {Component, OnInit, Inject} from '@angular/core';
-import {BankService} from '../bank.service';
-import {Bank} from '../bank';
-import currencies from 'src/assets/json/currencies.json';
-import countries from 'src/assets/json/countries.json';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import {FormBuilder, FormGroup } from '@angular/forms';
+
+import {BankService} from '../bank.service';
+import {Bank} from '../bank';
 
 @Component({
   selector: 'app-bank-details',
@@ -22,14 +21,16 @@ export class BankDetailsComponent implements OnInit {
   fromCurrency: string;
   toCurrencyXpath: string;
   unit: string;
+  iscrossinverted: boolean;
+  exchangeunitxpath = '';
 
-  curr: any = currencies;
-  countrs: any = countries;
   value = '';
   selectedCurr = '';
   selectedCoun = '';
-  selectedUnit = '';
   options: FormGroup;
+  checkedCross: boolean;
+  checkedExchangeUnit: boolean;
+
 
   constructor(private service: BankService,
               @Inject(MAT_DIALOG_DATA) public data: Bank,
@@ -43,14 +44,16 @@ export class BankDetailsComponent implements OnInit {
       this.fromCurrency = data.fromCurrency;
       this.toCurrencyXpath = data.toCurrencyXpath;
       this.unit = data.unit;
+      this.iscrossinverted = data.iscrossinverted;
+      this.exchangeunitxpath = data.exchangeunitxpath;
 
       this.options = fb.group({
         unit: this.data.unit
       });
     }
 
-  updateBank(bank: Bank) {
-    this.service.putBank(bank).subscribe(
+  async updateBank(bank: Bank) {
+    await this.service.putBank(bank).subscribe(
       data => {
         console.log();
       },
@@ -60,19 +63,32 @@ export class BankDetailsComponent implements OnInit {
     );
   }
 
-  update(value: string) { this.value = value; console.log(this.value); }
-  selectCurrency(value: string) { this.selectedCurr = value; console.log(this.selectedCurr); }
-  selectCountry(value: string) { this.selectedCoun = value; console.log(this.selectedCoun); }
-  selectUnit(value: string) { this.data.unit = value; console.log(this.data.unit + 'selectUnit'); }
+  ifFullExXpath(value: string): boolean {
+    if (value.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-  onSaveChanges(data: Bank) {
+  updateExchangeUnit(value: string) { this.data.exchangeunitxpath = value; }
+  selectCurrency(value: string) { this.selectedCurr = value; }
+  selectCountry(value: string) { this.selectedCoun = value; }
+  selectUnit(value: string) { this.data.unit = value; }
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async onSaveChanges(data: Bank) {
+    !this.checkedExchangeUnit ? this.data.exchangeunitxpath = '' && console.log(this.data.exchangeunitxpath) : null ;
     this.updateBank(data);
-
+    await this.delay(1000);
     this.dialog.close();
   }
 
   ngOnInit() {
-    console.log(this.options.value);
+    this.checkedExchangeUnit = this.ifFullExXpath(this.data.exchangeunitxpath);
+    console.log(this.checkedExchangeUnit);
   }
 
 }

@@ -24,7 +24,7 @@ export class EditBanksComponent implements OnInit {
 
   banks: any;
   displayedColumns: string[] = ['name', 'pageurl', 'fromCurrency', 'country', 'delete'];
-
+  isLoading = true;
 
   openDeleteDialog(bank: Bank) {
   const dialogConfig = new MatDialogConfig();
@@ -33,9 +33,9 @@ export class EditBanksComponent implements OnInit {
   dialogConfig.data = bank;
   const dialogRef = this.dialog.open(DeleteWindowComponent, dialogConfig);
   dialogRef.afterClosed().subscribe(
-    async data => { await this.delay(500);
-                    this.getBanks();
-    }
+    async data => {
+      await this.delay(500);
+      this.getBanks(); }
   );
   }
 
@@ -44,6 +44,7 @@ export class EditBanksComponent implements OnInit {
       res => {
         this.banks = new MatTableDataSource();
         this.banks.data = res;
+        this.isLoading = false;
       }
     );
   }
@@ -61,12 +62,14 @@ export class EditBanksComponent implements OnInit {
       toCurrencyXpath: bank.toCurrencyXpath,
       buyxpath: bank.buyxpath,
       sellxpath: bank.sellxpath,
-      unit: bank.unit
+      unit: bank.unit,
+      iscrossinverted: bank.iscrossinverted,
+      exchangeunitxpath: bank.exchangeunitxpath
     };
     const dialogRef = this.dialog.open(BankDetailsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
-      async data => { await this.delay(500);
-                      this.getBanks();
+      async data => {
+        await this.getBanks();
       }
   );
   }

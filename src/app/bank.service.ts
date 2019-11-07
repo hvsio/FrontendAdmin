@@ -1,28 +1,21 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, of, pipe} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Bank} from './bank';
 import {catchError} from 'rxjs/operators';
 import {environment} from 'src/environments/environment.prod';
 
-
 const SERVER_URL: string = environment.scrapperConfig + '/banks';
-// const SERVER_URL = 'http://localhost:8000/banks';
-
 
 @Injectable({
   providedIn: 'root',
 })
 export class BankService {
-
   errorResponse: any;
-
   constructor(private http: HttpClient) {}
-
   getBanks() {
     return this.http.get(`${SERVER_URL}`);
   }
-
 
   deleteBank(bankId: string) {
     return this.http.delete(`${SERVER_URL}/${bankId}`)
@@ -32,7 +25,7 @@ export class BankService {
   }
 
   postBank(name: string, country: string, pageurl: string, fromcurrency: string, tocurrencyxpath: string,
-           buyxpath: string, sellxpath: string, unit: string) {
+           buyxpath: string, sellxpath: string, unit: string, iscrossinverted: boolean, exchangeunitxpath: string ) {
     return this.http.post(`${SERVER_URL}`,
       {
         'name': name,
@@ -43,6 +36,8 @@ export class BankService {
         'buyxpath': buyxpath,
         'sellxpath': sellxpath,
         'unit': unit,
+        'iscrossinverted': iscrossinverted,
+        'exchangeunitxpath': exchangeunitxpath,
 
       }).pipe(
       catchError(this.handleError<any>('data'))
@@ -58,7 +53,9 @@ export class BankService {
         'tocurrencyxpath': bank.toCurrencyXpath,
         'buyxpath': bank.buyxpath,
         'sellxpath': bank.sellxpath,
-        'unit': bank.unit
+        'unit': bank.unit,
+        'iscrossinverted': bank.iscrossinverted,
+        'exchangeunitxpath': bank.exchangeunitxpath,
       }
     ).pipe(
       catchError(this.handleError<any>('data'))
@@ -70,7 +67,7 @@ export class BankService {
 
       // TODO: send the error to remote logging infrastructure
       console.error(`${error.error.errors}`);
-      this.setResponse(`${error.error.errors}`)
+      this.setResponse(`${error.error.errors}`);
       return of(result as T);
     };
   }

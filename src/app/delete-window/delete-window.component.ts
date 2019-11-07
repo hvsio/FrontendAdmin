@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+
 import { Bank } from '../bank';
 import { BankService } from '../bank.service';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-delete-window',
@@ -21,7 +21,6 @@ export class DeleteWindowComponent implements OnInit {
 
   async onYes(bank: Bank) {
     this.service.deleteBank(bank.id).subscribe();
-    console.log(this.bank);
     this.dialog.close();
   }
 
