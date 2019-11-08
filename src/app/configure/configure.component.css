@@ -1,17 +1,17 @@
 .mat-icon {
-  height: 105%;
-  width: 105%;
-  margin-top: -13%;
-  margin-left: -3%;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: block;
 }
 
-.trigger {
+button {
+  border-radius: 100%;
+  height: 200px;
+  width: 200px;
   margin: auto;
-  margin-top: 10%;
-  width: 150px;
-  height: 150px;
   display: block;
-  background-color: white;
 }
 
 ::ng-deep .snackbar {

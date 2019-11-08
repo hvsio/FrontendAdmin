@@ -6,6 +6,7 @@ import {catchError} from 'rxjs/operators';
 import {environment} from 'src/environments/environment.prod';
 
 const SERVER_URL = environment.scrapperConfig + '/banks';
+const SERVER_URL_TRIGGER = environment.scrapperTrigger + '/scrapper'
 
 @Injectable({
   providedIn: 'root',
@@ -58,6 +59,13 @@ export class BankService {
         'exchangeunitxpath': bank.exchangeunitxpath,
       }
     ).pipe(
+      catchError(this.handleError<any>('data'))
+    );
+  }
+
+  trigger() {
+    console.log('triggered');
+    return this.http.get(`${SERVER_URL_TRIGGER}`).pipe(
       catchError(this.handleError<any>('data'))
     );
   }
