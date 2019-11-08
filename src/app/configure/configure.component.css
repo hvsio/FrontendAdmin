@@ -1,0 +1,22 @@
+.mat-icon {
+  height: 105%;
+  width: 105%;
+  margin-top: -13%;
+  margin-left: -3%;
+}
+
+.trigger {
+  margin: auto;
+  margin-top: 10%;
+  width: 150px;
+  height: 150px;
+  display: block;
+  background-color: white;
+}
+
+::ng-deep .snackbar {
+  background: var(--color-snackbar) !important;
+  color: black !important
+}
+
+

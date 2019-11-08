@@ -5,7 +5,7 @@ import {Bank} from './bank';
 import {catchError} from 'rxjs/operators';
 import {environment} from 'src/environments/environment.prod';
 
-const SERVER_URL: string = environment.scrapperConfig + '/banks';
+const SERVER_URL = environment.scrapperConfig + '/banks';
 
 @Injectable({
   providedIn: 'root',
@@ -64,8 +64,6 @@ export class BankService {
 
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
       console.error(`${error.error.errors}`);
       this.setResponse(`${error.error.errors}`);
       return of(result as T);
