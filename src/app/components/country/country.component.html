@@ -1,0 +1,14 @@
+<div [ngClass]="setClasses()">
+  <p>
+    <input
+      (change)="onToggle(country)"
+      type="checkbox"
+      id="{{ country.id }}"
+      [checked]="country.allowed"
+    />
+    <label for="{{ country.id }}">
+      {{ country.name }}
+    </label>
+    <button (click)="onDelete(country)" class="del">X</button>
+  </p>
+</div>

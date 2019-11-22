@@ -1,5 +1,24 @@
 <body>
   <h1> Press the button to get information from banks </h1>
   <button mat-button> <mat-icon (click)="triggerScrapper()" svgIcon="trigger-button"></mat-icon > </button>
+
+  <div>
+    <h1>Fees</h1>
+    <!--
+    <app-fee *ngFor="let fee of fees" [fee]="fee">
+    </app-fee>
+    -->
+  </div>
+  <div>
+    <h1>Countries</h1>
+    <app-country *ngFor="let country of countries" [country]="country" (deleteCountry)="deleteCountry($event)"> </app-country>
+    <app-add-country (addCountry)="addCountry($event)"></app-add-country>
+  </div>
+  <div>
+    <h1>Currencies</h1>
+    <app-currency *ngFor="let currency of currencies" [currency]="currency" (deleteCurrency)="deleteCurrency($event)"></app-currency>
+    <app-add-currency (addCurrency)="addCurrency($event)"></app-add-currency>
+  </div>
+
 </body>
 

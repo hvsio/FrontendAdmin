@@ -27,6 +27,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CountryComponent } from './components/country/country.component';
+import { CurrencyComponent } from './components/currency/currency.component';
+import { AddCountryComponent } from './components/add-country/add-country.component';
+import { AddCurrencyComponent } from './components/add-currency/add-currency.component';
 
 
 
@@ -39,6 +43,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NoPageComponent,
     ConfigureComponent,
     DeleteWindowComponent,
+    CountryComponent,
+    CurrencyComponent,
+    AddCountryComponent,
+    AddCurrencyComponent,
   ],
   imports: [
     BrowserModule,

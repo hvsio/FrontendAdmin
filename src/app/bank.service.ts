@@ -77,6 +77,7 @@ export class BankService {
       return of(result as T);
     };
   }
+
   setResponse(text: string) {
     this.errorResponse = text;
   }
