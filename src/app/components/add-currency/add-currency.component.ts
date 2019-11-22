@@ -22,8 +22,8 @@ export class AddCurrencyComponent implements OnInit {
       name: this.name,
       allowed: true
     };
-
     this.addCurrency.emit(currency);
+    this.name = null;
   }
 
 }

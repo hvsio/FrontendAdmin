@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-country',
@@ -20,8 +21,8 @@ export class AddCountryComponent implements OnInit {
       name: this.name,
       allowed: true
     };
-
     this.addCountry.emit(country);
+    this.name = null;
   }
 
 }

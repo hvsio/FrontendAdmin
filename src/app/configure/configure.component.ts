@@ -63,13 +63,15 @@ export class ConfigureComponent implements OnInit {
 
   addCurrency(currency:Currency) {
     this.currencyService.addCurrency(currency).subscribe(currency => {
-      this.currencies.push(currency);
+      //this.currencies.push(currency);
+      this.ngOnInit()
     });
   }
 
   addCountry(country:Country) {
     this.countryService.addCountry(country).subscribe(country => {
-      this.countries.push(country);
+      //this.countries.push(country);
+      this.ngOnInit()
     });
   }
 
