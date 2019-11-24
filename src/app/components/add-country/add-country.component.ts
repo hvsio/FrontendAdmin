@@ -1,5 +1,4 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-country',

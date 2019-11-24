@@ -31,6 +31,7 @@ import { CountryComponent } from './components/country/country.component';
 import { CurrencyComponent } from './components/currency/currency.component';
 import { AddCountryComponent } from './components/add-country/add-country.component';
 import { AddCurrencyComponent } from './components/add-currency/add-currency.component';
+import {FeeComponent} from './components/fee/fee.component';
 
 
 
@@ -43,6 +44,7 @@ import { AddCurrencyComponent } from './components/add-currency/add-currency.com
     NoPageComponent,
     ConfigureComponent,
     DeleteWindowComponent,
+    FeeComponent,
     CountryComponent,
     CurrencyComponent,
     AddCountryComponent,
