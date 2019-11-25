@@ -10,6 +10,7 @@
     <label>
       <input type="text" name="intl" [ngModel]="intl" [disabled]="!myVar">
     </label> <br/>
+    <button (click)="onDeleteFee(fee)">Delete</button>
     <button (click)="onEdit(fee)" class="del">{{buttonLabel}}</button>
     <br/> <br/>
   </p>

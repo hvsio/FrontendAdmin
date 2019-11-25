@@ -12,7 +12,8 @@ import {Fee} from '../../models/Fee';
 export class FeeComponent implements OnInit {
 
   @Input() fee: Fee;
-  @Output() editFee: EventEmitter<any> = new EventEmitter<any>();
+  @Output() deleteFee: EventEmitter<Fee> = new EventEmitter<Fee>();
+
   myVar: boolean;
   buttonLabel: string;
   sepa: string;
@@ -36,12 +37,9 @@ export class FeeComponent implements OnInit {
   //   };
   // }
 
-  // onToggle(country) {
-  //   // Toggle in UI
-  //   country.allowed = !country.allowed;
-  //   // Toggle on server
-  //   this.feeService.(country).subscribe(country => console.log(country));
-  // }
+  onDeleteFee(fee) {
+    this.deleteFee.emit(fee);
+  }
 
   changeLabel(tof): string {
     let str: string;
@@ -60,7 +58,6 @@ export class FeeComponent implements OnInit {
       fee.sepa = this.sepa;
       fee.intl = this.intl;
       console.log(fee);
-      this.editFee.emit(fee);
       this.feeService.updateFee(fee).subscribe(fee => console.log(fee));
     }
 

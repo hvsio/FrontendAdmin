@@ -4,8 +4,8 @@
 
   <div>
     <h1>Fees</h1>
-    <app-fee *ngFor="let fee of fees" [fee]="fee">
-    </app-fee>
+    <app-fee *ngFor="let fee of fees" [fee]="fee" (deleteFee)="deleteFee($event)"> </app-fee>
+    <app-add-fee (addFee)="addFee($event)"></app-add-fee>
   </div>
   <div>
     <h1>Countries</h1>

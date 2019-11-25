@@ -7,12 +7,12 @@ import {BankService} from '../bank.service';
 
 import {CountryService} from '../services/country/country.service';
 import {CurrencyService} from '../services/currency/currency.service';
+import {FeeService} from '../services/fee/fee.service';
+
 
 import {Country} from '../models/Country';
 import {Currency} from '../models/Currency';
 import {Fee} from '../models/Fee';
-import {FeeService} from '../services/fee/fee.service';
-
 
 @Component({
   selector: 'app-configure',
@@ -64,6 +64,13 @@ export class ConfigureComponent implements OnInit {
     this.currencyService.deleteCurrency(currency).subscribe();
   }
 
+  deleteFee(fee: Fee) {
+    // Remove From UI
+    this.fees = this.fees.filter(t => t.id !== fee.id);
+    // Remove from server
+    this.feeService.deleteFee(fee).subscribe();
+  }
+
   addCurrency(currency: Currency) {
     this.currencyService.addCurrency(currency).subscribe(currency => {
       //this.currencies.push(currency);
@@ -73,6 +80,13 @@ export class ConfigureComponent implements OnInit {
 
   addCountry(country: Country) {
     this.countryService.addCountry(country).subscribe(country => {
+      //this.countries.push(country);
+      this.ngOnInit();
+    });
+  }
+
+  addFee(fee: Fee) {
+    this.feeService.addFee(fee).subscribe(country => {
       //this.countries.push(country);
       this.ngOnInit();
     });
