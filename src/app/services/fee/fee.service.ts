@@ -14,8 +14,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class FeeService {
-  // feesUrl:string = 'http://35.193.212.114:8000/fees';
-  feesUrl:string = 'http://localhost:8000/fees';
+  feesUrl:string = 'http://35.193.212.114:8000/fees';
+  // feesUrl:string = 'http://localhost:8000/fees';
   currenciesLimit = '?_limit=5';
 
   constructor(private http:HttpClient) { }

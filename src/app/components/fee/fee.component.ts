@@ -20,7 +20,7 @@ export class FeeComponent implements OnInit {
 
   constructor(private feeService: FeeService) {
     this.myVar = false;
-    this.buttonLabel = this.changeLabel(this.myVar)
+    this.buttonLabel = this.changeLabel(this.myVar);
   }
 
   ngOnInit() {
@@ -43,23 +43,23 @@ export class FeeComponent implements OnInit {
   //   this.feeService.(country).subscribe(country => console.log(country));
   // }
 
-  changeLabel(tof): string{
+  changeLabel(tof): string {
     let str: string;
 
-    if (tof)
-      str = "Submit";
-    else
-      str = "Modify";
+    if (tof) {
+      str = 'Submit';
+    } else {
+      str = 'Modify';
+    }
 
     return str;
   }
 
   onEdit(fee) {
-    // TODO: figure out updating and deleting fees
-    if (this.myVar){
+    if (this.myVar) {
       fee.sepa = this.sepa;
       fee.intl = this.intl;
-      console.log(fee)
+      console.log(fee);
       this.editFee.emit(fee);
       this.feeService.updateFee(fee).subscribe(fee => console.log(fee));
     }
