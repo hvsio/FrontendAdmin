@@ -12,6 +12,11 @@ table {
     width: 20px;
 }
 
+.mat-progress-spinner {
+  margin: auto;
+  display: block;
+}
+
 ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
   stroke: var(--color-primary) !important;
 }

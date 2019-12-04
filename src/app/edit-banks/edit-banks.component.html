@@ -32,12 +32,10 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
 
-      <mat-card *ngIf="isLoading"
-                style="display: flex; justify-content: center; align-items: center">
         <mat-progress-spinner class="spinner"
-                              mode="indeterminate">
+                              mode="indeterminate"
+                              *ngIf="isLoading">
         </mat-progress-spinner>
-      </mat-card>
 
     </div>
 
