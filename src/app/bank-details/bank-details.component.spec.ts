@@ -9,9 +9,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import {FormBuilder } from '@angular/forms';
 
 import { BankDetailsComponent } from './bank-details.component';
-import {BankService} from '../bank.service';
+import {BankService} from '../services/bank.service';
 import {HttpClientModule} from '@angular/common/http';
-import {Bank} from '../bank';
+import {Bank} from '../models/Bank';
 import {OverlayContainer} from '@angular/cdk/overlay';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 

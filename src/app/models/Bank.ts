@@ -10,7 +10,8 @@ export class Bank {
   id: string;
   iscrossinverted: boolean;
   exchangeunitxpath: string;
-    constructor(
+
+  constructor(
     name: string,
     country: string,
     pageurl: string,
@@ -21,17 +22,17 @@ export class Bank {
     unit: string,
     iscrossinverted: boolean,
     exchangeunitxpath: string,
-     ) {
-        this.name = name;
-        this.country = country;
-        this.pageurl = pageurl;
-        this.buyxpath = buyxpath;
-        this.sellxpath = sellxpath;
-        this.fromCurrency = fromCurrency;
-        this.toCurrencyXpath = toCurrencyXpath;
-        this.unit = unit;
-        this.iscrossinverted = iscrossinverted;
-        this.exchangeunitxpath = exchangeunitxpath;
-    }
+  ) {
+    this.name = name;
+    this.country = country;
+    this.pageurl = pageurl;
+    this.buyxpath = buyxpath;
+    this.sellxpath = sellxpath;
+    this.fromCurrency = fromCurrency;
+    this.toCurrencyXpath = toCurrencyXpath;
+    this.unit = unit;
+    this.iscrossinverted = iscrossinverted;
+    this.exchangeunitxpath = exchangeunitxpath;
+  }
 
 }

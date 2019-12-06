@@ -1,9 +1,9 @@
 import {Component, OnInit, Inject} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import {FormBuilder, FormGroup } from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
-import {BankService} from '../bank.service';
-import {Bank} from '../bank';
+import {BankService} from '../services/bank.service';
+import {Bank} from '../models/Bank';
 
 @Component({
   selector: 'app-bank-details',
@@ -28,7 +28,6 @@ export class BankDetailsComponent implements OnInit {
   selectedCurr = '';
   selectedCoun = '';
   options: FormGroup;
-  checkedCross: boolean;
   checkedExchangeUnit: boolean;
 
 
@@ -36,26 +35,26 @@ export class BankDetailsComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: Bank,
               fb: FormBuilder,
               public dialog: MatDialogRef<BankDetailsComponent>) {
-      this.name = data.name;
-      this.country = data.country;
-      this.pageurl = data.pageurl;
-      this.buyxpath = data.buyxpath;
-      this.sellxpath = data.sellxpath;
-      this.fromCurrency = data.fromCurrency;
-      this.toCurrencyXpath = data.toCurrencyXpath;
-      this.unit = data.unit;
-      this.iscrossinverted = data.iscrossinverted;
-      this.exchangeunitxpath = data.exchangeunitxpath;
+    this.name = data.name;
+    this.country = data.country;
+    this.pageurl = data.pageurl;
+    this.buyxpath = data.buyxpath;
+    this.sellxpath = data.sellxpath;
+    this.fromCurrency = data.fromCurrency;
+    this.toCurrencyXpath = data.toCurrencyXpath;
+    this.unit = data.unit;
+    this.iscrossinverted = data.iscrossinverted;
+    this.exchangeunitxpath = data.exchangeunitxpath;
 
-      this.options = fb.group({
-        unit: this.data.unit
-      });
-    }
+    this.options = fb.group({
+      unit: this.data.unit
+    });
+  }
 
   async updateBank(bank: Bank) {
     await this.service.putBank(bank).subscribe(
       data => {
-        console.log();
+        console.log(bank);
       },
       err => {
         console.log('Error while updating', err);
@@ -71,16 +70,20 @@ export class BankDetailsComponent implements OnInit {
     }
   }
 
-  updateExchangeUnit(value: string) { this.data.exchangeunitxpath = value; }
-  selectCurrency(value: string) { this.selectedCurr = value; }
-  selectCountry(value: string) { this.selectedCoun = value; }
-  selectUnit(value: string) { this.data.unit = value; }
+  updateExchangeUnit(value: string) {
+    this.data.exchangeunitxpath = value;
+  }
+
+  selectUnit(value: string) {
+    this.data.unit = value;
+  }
+
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   async onSaveChanges(data: Bank) {
-    !this.checkedExchangeUnit ? this.data.exchangeunitxpath = '' && console.log(this.data.exchangeunitxpath) : null ;
+    !this.checkedExchangeUnit ? this.data.exchangeunitxpath = '' && console.log(this.data.exchangeunitxpath) : null;
     this.updateBank(data);
     await this.delay(1000);
     this.dialog.close();

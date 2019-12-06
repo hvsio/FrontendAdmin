@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-import { Bank } from '../bank';
-import { BankService } from '../bank.service';
+import { Bank } from '../models/Bank';
+import { BankService } from '../services/bank.service';
 
 @Component({
   selector: 'app-delete-window',

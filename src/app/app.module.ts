@@ -7,6 +7,8 @@ import {BankDetailsComponent} from './bank-details/bank-details.component';
 import {NoPageComponent} from './no-page/no-page.component';
 import {ConfigureComponent} from './configure/configure.component';
 import {DeleteWindowComponent} from './delete-window/delete-window.component';
+import {ConfigurationService} from './services/configuration.service';
+import {BankService} from './services/bank.service';
 
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
@@ -27,12 +29,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {CountryComponent} from './components/country/country.component';
-import {CurrencyComponent} from './components/currency/currency.component';
-import {AddCountryComponent} from './components/add-country/add-country.component';
-import {AddCurrencyComponent} from './components/add-currency/add-currency.component';
-import {FeeComponent} from './components/fee/fee.component';
-import {AddFeeComponent} from './components/add-fee/add-fee.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -43,13 +40,7 @@ import {AddFeeComponent} from './components/add-fee/add-fee.component';
     BankDetailsComponent,
     NoPageComponent,
     ConfigureComponent,
-    DeleteWindowComponent,
-    FeeComponent,
-    CountryComponent,
-    CurrencyComponent,
-    AddCountryComponent,
-    AddCurrencyComponent,
-    AddFeeComponent,
+    DeleteWindowComponent
   ],
   imports: [
     BrowserModule,
@@ -72,10 +63,11 @@ import {AddFeeComponent} from './components/add-fee/add-fee.component';
     MatSnackBarModule,
     MatCheckboxModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   entryComponents: [BankDetailsComponent, DeleteWindowComponent],
-  providers: [],
+  providers: [ConfigurationService, BankService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

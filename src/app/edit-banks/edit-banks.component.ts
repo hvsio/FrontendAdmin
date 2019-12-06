@@ -1,13 +1,13 @@
-import { Component, OnInit, Inject, PACKAGE_ROOT_URL } from '@angular/core';
-import { BankService } from '../bank.service';
-import { Bank } from '../bank';
+import {Component, OnInit, Inject, PACKAGE_ROOT_URL} from '@angular/core';
+import {BankService} from '../services/bank.service';
+import {Bank} from '../models/Bank';
 
-import { BankDetailsComponent } from '../bank-details/bank-details.component';
-import { DeleteWindowComponent } from '../delete-window/delete-window.component';
+import {BankDetailsComponent} from '../bank-details/bank-details.component';
+import {DeleteWindowComponent} from '../delete-window/delete-window.component';
 
-import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import {MatTableDataSource, MatDialog, MatDialogConfig} from '@angular/material';
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
@@ -27,16 +27,17 @@ export class EditBanksComponent implements OnInit {
   isLoading = true;
 
   openDeleteDialog(bank: Bank) {
-  const dialogConfig = new MatDialogConfig();
-  dialogConfig.autoFocus = true;
-  dialogConfig.width = '30%';
-  dialogConfig.data = bank;
-  const dialogRef = this.dialog.open(DeleteWindowComponent, dialogConfig);
-  dialogRef.afterClosed().subscribe(
-    async data => {
-      await this.delay(500);
-      this.getBanks(); }
-  );
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    dialogConfig.data = bank;
+    const dialogRef = this.dialog.open(DeleteWindowComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      async data => {
+        await this.delay(500);
+        this.getBanks();
+      }
+    );
   }
 
   getBanks() {
@@ -45,6 +46,7 @@ export class EditBanksComponent implements OnInit {
         this.banks = new MatTableDataSource();
         this.banks.data = res;
         this.isLoading = false;
+        console.log(this.banks);
       }
     );
   }
@@ -71,7 +73,7 @@ export class EditBanksComponent implements OnInit {
       async data => {
         await this.getBanks();
       }
-  );
+    );
   }
 
   delay(ms: number) {
@@ -79,7 +81,7 @@ export class EditBanksComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.getBanks();
+    this.getBanks();
   }
 
 }

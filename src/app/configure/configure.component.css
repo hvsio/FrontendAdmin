@@ -1,3 +1,7 @@
+h2 {
+  text-align: center;
+}
+
 .mat-icon {
   height: 100%;
   width: 100%;
@@ -6,17 +10,134 @@
   display: block;
 }
 
-button {
+#trigger-btn {
   border-radius: 100%;
   height: 200px;
   width: 200px;
-  margin: auto;
+  margin: auto auto 5%;
+  display: block;
+}
+
+#card-holder {
+  width: 20%;
+  margin: 2%;
+  display: inline-grid;
+}
+
+.fee-details {
+  width: 100%;
+}
+
+.action-fee-button {
+  margin-right: 5%;
+  margin-left: 5%;
+  width: 40%;
+  display: inline-grid;
+  font-size: 13px;
+  text-align: center;
+  padding: 1px;
+}
+
+.submit-cur-coun {
+  width: 30%;
+  display: inline-block;
+  height: 50px;
+  margin-bottom: 5px;
+  color: white;
+  font-size: 15px;
+  background-color: var(--color-primary);
+  border-radius: 10px;
+}
+
+.submit-form {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  width: 50%;
+  margin-top: 2%;
+}
+
+.input-coun-curr {
+  margin-right: 10%;
+  width: 50%;
+  display: inline-block;
+}
+
+.fee-input {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 20%;
+}
+
+.submit-button {
+  color: white;
+  font-size: 15px;
+  background-color: var(--color-primary);
+  border-radius: 10px;
+  width: 15%;
+  margin: 10px auto;
+  display: block;
+  padding: 10px;
+}
+
+.mat-card {
+  width: 100%;
+}
+
+.mat-checkbox {
+  margin: 2% 85% 2% 2%;
+  display: inline-block;
+}
+
+.entry {
+  background: #f4f4f4;
+  border-bottom: 1px #ccc dotted;
+  margin: 0;
+}
+
+.is-complete {
+  text-decoration: line-through;
+}
+
+
+#del1, #del2 {
+  height: 35px;
+  width: 25px;
+  padding-bottom: 0;
+  padding-top: 2%;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.mat-progress-spinner {
+  margin: 40px auto;
   display: block;
 }
 
 ::ng-deep .snackbar {
   background: var(--color-snackbar) !important;
   color: black !important
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: var(--color-primary)!important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: var(--color-primary)!important;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: lightgrey !important;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: var(--color-primary) !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: var(--color-primary) !important;
 }
 
 

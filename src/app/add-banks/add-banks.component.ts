@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { BankService } from '../bank.service';
+import {Component, OnInit} from '@angular/core';
+import {BankService} from '../services/bank.service';
 
 import currencies from 'src/assets/json/currencies.json';
 import countries from 'src/assets/json/countries.json';
 import units from 'src/assets/json/units.json';
+import {Bank} from '../models/Bank';
 
-import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
-import {Bank} from '../bank';
+import {MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-add-banks',
@@ -16,7 +17,9 @@ import {Bank} from '../bank';
 
 export class AddBanksComponent implements OnInit {
 
-  constructor(private service: BankService, private snackBar: MatSnackBar) { }
+
+  constructor(private service: BankService, private snackBar: MatSnackBar) {
+  }
 
   curr: any = currencies;
   countrs: any = countries;
@@ -55,7 +58,7 @@ export class AddBanksComponent implements OnInit {
         console.log('POST executed', data);
         if (name === '' || country === '' || pageurl === '' || fromcurrency === ''
           || tocurrencyxpath === '' || buyxpath === '' || sellxpath === ''
-          || unit === '' ) {
+          || unit === '') {
           this.openSnackBar('Please fill all the areas');
         } else {
           if (data === undefined) {
@@ -73,24 +76,38 @@ export class AddBanksComponent implements OnInit {
       this.selectedCoun = s;
     }
   }
+
   onEnterCurr(evt: any, s: string) {
     if (evt.source.selected) {
       this.selectedCurr = s;
     }
   }
+
   onEnterUnit(evt: any, s: string) {
     if (evt.source.selected) {
       this.selectedUnit = s;
     }
   }
 
-  updateExchangeUnit(value: string) { this.exchangeunitxpath = value; }
-  selectCurrency(value: string) { this.selectedCurr = value; }
-  selectCountry(value: string) { this.selectedCoun = value; }
-  selectUnit(value: string) { this.selectedUnit = value; }
+  updateExchangeUnit(value: string) {
+    this.exchangeunitxpath = value;
+  }
+
+  selectCurrency(value: string) {
+    this.selectedCurr = value;
+  }
+
+  selectCountry(value: string) {
+    this.selectedCoun = value;
+    console.log(this.countrs);
+  }
+
+  selectUnit(value: string) {
+    this.selectedUnit = value;
+  }
 
   ngOnInit() {
     this.configuration();
-}
+  }
 
 }

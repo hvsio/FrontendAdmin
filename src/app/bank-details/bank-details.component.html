@@ -1,119 +1,122 @@
-
 <h1 mat-dialog-title cdkFocusInitial>Edit bank</h1>
 <div mat-dialog-content>
-    <p>
+  <p>
     Name:
-    <mat-form-field appearance="outline" class="fields" >
-            <input #name id="name"
-            type="text"
-            matInput
-            [(ngModel)]="data.name">
+    <mat-form-field appearance="outline" class="fields">
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="data.name">
     </mat-form-field>
-    </p>
+  </p>
 
-    <p>
+  <p>
     Country:
-    <mat-form-field appearance="outline" class="fields" >
-            <input #country id="country"
-            type="text"
-            matInput
-            [(ngModel)]="data.country"
-            [disabled]="true">
+    <mat-form-field appearance="outline" class="fields">
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="data.country"
+        [disabled]="true">
     </mat-form-field>
-    </p>
+  </p>
 
-    <p>
+  <p>
     Page URL:
     <mat-form-field appearance="outline" class="fields">
-            <input #pageurl id="url"
-            type="text"
-            matInput
-            [(ngModel)]="data.pageurl">
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="data.pageurl">
     </mat-form-field>
-    </p>
+  </p>
 
-    <p>
+  <p>
     Sender currency:
     <mat-form-field appearance="outline" class="fields">
-            <input #fromCurrency id="fromCurrency"
-            type="text"
-            matInput
-            [(ngModel)]="data.fromCurrency"
-            [disabled]="true">
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="data.fromCurrency"
+        [disabled]="true">
     </mat-form-field>
-    </p>
+  </p>
 
-    <p>
+  <p>
     Receiver currency Xpath:
     <mat-form-field appearance="outline" class="fields">
-        <input #toCurrencyXpath id="toCurrencyXpath"
+      <input
         type="text"
         matInput
         [(ngModel)]="data.toCurrencyXpath">
     </mat-form-field>
-    </p>
+  </p>
 
-    <p>
+  <p>
     Buy Xpath:
     <mat-form-field appearance="outline" class="fields">
-        <input #buyxpath id="buyxpath"
+      <input
         type="text"
         matInput
         [(ngModel)]="data.buyxpath">
     </mat-form-field>
-    </p>
+  </p>
 
-    <p>
+  <p>
     Sell Xpath:
     <mat-form-field appearance="outline" class="fields">
-        <input #sellxpath id="sellxpath"
+      <input
         type="text"
         matInput
         [(ngModel)]="data.sellxpath">
     </mat-form-field>
-    </p>
+  </p>
 
-    <form [formGroup]="options">
+  <form [formGroup]="options">
     <p>
-    Unit:
-    <mat-form-field appearance="outline" class="fields" >
+      Unit:
+      <mat-form-field appearance="outline" class="fields">
         <mat-select formControlName="unit">
-            <mat-option #original
-            (blur)="selectUnit(original.value)"
-            value={{data.unit}}> {{data.unit}} </mat-option>
-            <mat-option #first
-            (blur)="selectUnit(first.value)"
-            value="M100"> M100 </mat-option>
-            <mat-option #sec
-            (blur)="selectUnit(sec.value)"
-            value="exchange100"> exchange100 </mat-option>
-            <mat-option #third
-            (blur)="selectUnit(third.value)"
-            value="exchange"> exchange </mat-option>
-            <mat-option #fourth
-            (blur)="selectUnit(fourth.value)"
-            value="percentage"> percentage </mat-option>
+          <mat-option #original
+                      (blur)="selectUnit(original.value)"
+                      value={{data.unit}}> {{data.unit}} </mat-option>
+          <mat-option #first
+                      (blur)="selectUnit(first.value)"
+                      value="M100"> M100
+          </mat-option>
+          <mat-option #sec
+                      (blur)="selectUnit(sec.value)"
+                      value="exchange100"> exchange100
+          </mat-option>
+          <mat-option #third
+                      (blur)="selectUnit(third.value)"
+                      value="exchange"> exchange
+          </mat-option>
+          <mat-option #fourth
+                      (blur)="selectUnit(fourth.value)"
+                      value="percentage"> percentage
+          </mat-option>
         </mat-select>
-    </mat-form-field>
+      </mat-form-field>
     </p>
-    </form>
+  </form>
 
   <p>
-    <section id="checkboxes">
-      <mat-checkbox id="checkboxCross"
-                    [(ngModel)]="data.iscrossinverted"
-                    name="crossCheckbox">
-        Cross inversion
-      </mat-checkbox>
-      <mat-checkbox id="checkboxExchange"
-                    [(ngModel)]="checkedExchangeUnit"
-                    name="exchCheckbox"
-                    >
-        Exchange unit Xpath
-      </mat-checkbox>
-    </section>
+  <div id="checkboxes">
+    <mat-checkbox id="checkboxCross"
+                  [(ngModel)]="data.iscrossinverted"
+                  name="crossCheckbox">
+      Cross inversion
+    </mat-checkbox>
+    <mat-checkbox id="checkboxExchange"
+                  [(ngModel)]="checkedExchangeUnit"
+                  name="exchCheckbox"
+    >
+      Exchange unit Xpath
+    </mat-checkbox>
+  </div>
   <p>
-  Exchange unit Xpath:
+    Exchange unit Xpath:
     <mat-form-field appearance="outline" class="fields">
       <input [disabled]="checkedExchangeUnit==false" #exchangeunitxpath
              (blur)="updateExchangeUnit(exchangeunitxpath.value)"
@@ -124,8 +127,8 @@
     </mat-form-field>
   </p>
 
-<mat-dialog-actions>
-    <button mat-button id="save-button" (click)="onSaveChanges(data)">Save</button>
-</mat-dialog-actions>
+  <mat-dialog-actions>
+    <button mat-raised-button id="save-button" (click)="onSaveChanges(data)">Save</button>
+  </mat-dialog-actions>
 
 </div>

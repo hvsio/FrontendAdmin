@@ -1,22 +1,51 @@
 <body>
-  <h1> Press the button to get information from banks </h1>
-  <button mat-button> <mat-icon (click)="triggerScrapper()" svgIcon="trigger-button"></mat-icon > </button>
-
-  <div>
-    <h1>Fees</h1>
-    <app-fee *ngFor="let fee of fees" [fee]="fee" (deleteFee)="deleteFee($event)"> </app-fee>
-    <app-add-fee (addFee)="addFee($event)"></app-add-fee>
+<h1> Press the button to get information from banks </h1>
+<button mat-button id="trigger-btn">
+  <mat-icon (click)="triggerScrapper()" svgIcon="trigger-button"></mat-icon>
+</button>
+<mat-divider></mat-divider>
+<div>
+  <h1>Fees</h1>
+  <mat-progress-bar *ngIf="isLoadingFees"
+                    mode="indeterminate">
+  </mat-progress-bar>
+  <div id="card-holder" *ngFor="let f of fees">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> COUNTRY: {{ f.country }} </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        SEPA:
+        <br>
+        <mat-form-field appearance="outline" class="fee-details">
+          <input onChange="this.value = this.value.toUpperCase()" type="number" name="sepa" #sepa [ngModel]="f.sepa"
+                 matInput>
+        </mat-form-field>
+        INTERNATIONAL:
+        <mat-form-field appearance="outline" class="fee-details">
+          <input type="number" name="intl" #intl [ngModel]="f.intl" matInput>
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-raised-button class="action-fee-button" (click)="deleteFee(f)">Delete</button>
+      <button mat-raised-button class="action-fee-button" (click)="onEditFee(f, sepa.value, intl.value)">Submit
+        changes
+      </button>
+    </mat-card>
   </div>
   <div>
-    <h1>Countries</h1>
-    <app-country *ngFor="let country of countries" [country]="country" (deleteCountry)="deleteCountry($event)"> </app-country>
-    <app-add-country (addCountry)="addCountry($event)"></app-add-country>
+    <mat-divider></mat-divider>
+    <h2> Add new fee</h2>
+    <mat-form-field class="fee-input" appearance="outline">
+      <input type="text" maxlength="2" name="form" [(ngModel)]="feeCoun" placeholder="Add country..." matInput>
+    </mat-form-field>
+    <mat-form-field class="fee-input" appearance="outline">
+      <input type="number" name="form" [(ngModel)]="feeSepa" placeholder="Add SEPA..." matInput>
+    </mat-form-field>
+    <mat-form-field class="fee-input" appearance="outline">
+      <input type="number" name="form" [(ngModel)]="feeIntl" placeholder="Add INTL..." matInput>
+    </mat-form-field>
+    <button mat-raised-button (click)="addFee(feeCoun, feeSepa, feeIntl)" class="submit-button">Submit</button>
   </div>
-  <div>
-    <h1>Currencies</h1>
-    <app-currency *ngFor="let currency of currencies" [currency]="currency" (deleteCurrency)="deleteCurrency($event)"></app-currency>
-    <app-add-currency (addCurrency)="addCurrency($event)"></app-add-currency>
-  </div>
-
+</div>
 </body>
 

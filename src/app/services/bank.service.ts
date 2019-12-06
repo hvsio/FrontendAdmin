@@ -1,19 +1,21 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Bank} from './bank';
+import {Bank} from 'src/app/models/Bank';
 import {catchError} from 'rxjs/operators';
 import {environment} from 'src/environments/environment.prod';
 
 const SERVER_URL = environment.scrapperConfig + '/banks';
-const SERVER_URL_TRIGGER = environment.scrapperTrigger + '/scrapper'
 
 @Injectable({
   providedIn: 'root',
 })
 export class BankService {
   errorResponse: any;
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+  }
+
   getBanks() {
     return this.http.get(`${SERVER_URL}`);
   }
@@ -26,7 +28,7 @@ export class BankService {
   }
 
   postBank(name: string, country: string, pageurl: string, fromcurrency: string, tocurrencyxpath: string,
-           buyxpath: string, sellxpath: string, unit: string, iscrossinverted: boolean, exchangeunitxpath: string ) {
+           buyxpath: string, sellxpath: string, unit: string, iscrossinverted: boolean, exchangeunitxpath: string) {
     return this.http.post(`${SERVER_URL}`,
       {
         'name': name,
@@ -55,6 +57,7 @@ export class BankService {
         'buyxpath': bank.buyxpath,
         'sellxpath': bank.sellxpath,
         'unit': bank.unit,
+        'id': bank.id,
         'iscrossinverted': bank.iscrossinverted,
         'exchangeunitxpath': bank.exchangeunitxpath,
       }
@@ -63,17 +66,11 @@ export class BankService {
     );
   }
 
-  trigger() {
-    console.log('triggered');
-    return this.http.get(`${SERVER_URL_TRIGGER}`).pipe(
-      catchError(this.handleError<any>('data'))
-    );
-  }
-
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${error.error.errors}`);
-      this.setResponse(`${error.error.errors}`);
+      console.log(error);
+      this.setResponse(error);
       return of(result as T);
     };
   }

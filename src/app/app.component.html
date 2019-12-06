@@ -1,22 +1,22 @@
-
 <div class="container">
-    <mat-toolbar color="primary" class="example-toolbar">
-      <h1 class="example-app-name">Responsive App</h1>
-    </mat-toolbar>
-  
-    <mat-sidenav-container class="container">
-      <mat-sidenav class="sidenav" mode="side" opened>
+  <mat-toolbar color="primary" class="example-toolbar">
+    <h1 class="example-app-name">Responsive App</h1>
+  </mat-toolbar>
+  <mat-sidenav-container class="container">
+    <mat-sidenav class="sidenav" mode="side" opened>
+      <div id="logo-holder">
         <img id="logo" src="assets/img/logoWHITE.png">
-        <mat-nav-list>
-          <a class="item" routerLink="/add" mat-list-item> Add bank </a>
-          <a class="item" routerLink="/edit" mat-list-item> Edit bank </a>
-          <a class="item" routerLink="/configure" mat-list-item> Configure scrapper </a>
-        </mat-nav-list>
-      </mat-sidenav>
-  
-      <mat-sidenav-content>
-        <router-outlet></router-outlet>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
+      </div>
+      <mat-nav-list>
+        <a class="item" routerLink="/add" mat-list-item> Add bank </a>
+        <a class="item" routerLink="/edit" mat-list-item> Edit bank </a>
+        <a class="item" routerLink="/configure" mat-list-item> Configuration </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
 

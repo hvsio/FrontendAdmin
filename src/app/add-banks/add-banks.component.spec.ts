@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AddBanksComponent} from './add-banks.component';
-import {BankService} from '../bank.service';
+import {BankService} from '../services/bank.service';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
