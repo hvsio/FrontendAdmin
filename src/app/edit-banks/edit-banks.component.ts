@@ -45,6 +45,8 @@ export class EditBanksComponent implements OnInit {
       res => {
         this.banks = new MatTableDataSource();
         this.banks.data = res;
+
+        console.log(res);
         this.isLoading = false;
         console.log(this.banks);
       }

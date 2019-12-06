@@ -1,120 +1,107 @@
 <body>
-<h1> Add bank to the list </h1>
-<head>
-  <title> Add bank</title>
-</head>
-<form>
-  <p>
-    <mat-form-field appearance="outline" class="fields">
-      <mat-label>Name of the bank</mat-label>
-      <label>
-        <input #name
-               type="text"
-               matInput>
-      </label>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="fields">
-      <mat-label>Country origin of the bank</mat-label>
-      <mat-select>
-        <mat-option #country
-                    value="coun"
-                    (blur)="selectCountry(coun.abbreviation)"
-                    (onSelectionChange)="onEnterCoun($event, coun.abbreviation)"
-                    *ngFor="let coun of countrs"
-        > {{ coun.abbreviation }}   ({{coun.country}})
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="fields">
-      <mat-label>URL page of the bank</mat-label>
-      <label>
-        <input #url
-               type="text"
-               matInput>
-      </label>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="fields">
-      <mat-label>Sender currency</mat-label>
-      <mat-select>
-        <mat-option #currency
+    <h1> Add bank to the list </h1>
+    <head>
+        <title> Add bank</title>
+    </head>
+    <form>
+        <p>
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Name of the bank</mat-label>
+                <input #name
+                        type="text"
+                        matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Country origin of the bank</mat-label>
+                <mat-select>
+                            <mat-option #country
+                            value="coun"
+                            (blur)="selectCountry(coun.abbreviation)"
+                            (onSelectionChange)="onEnterCoun($event, coun.abbreviation)"
+                            *ngFor="let coun of countrs"
+                           > {{ coun.abbreviation }}   ({{coun.country}}) </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>URL page of the bank</mat-label>
+                    <input #url
+                    type="text"
+                    matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Sender currency</mat-label>
+                <mat-select>
+                    <mat-option #currency
                     value="c"
                     (blur)="selectCurrency(c.currency)"
                     (onSelectionChange)="onEnterCurr($event, c.currency)"
                     *ngFor="let c of curr"
-        > {{ c.currency }} </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="fields">
-      <mat-label>Receiver currency Xpath</mat-label>
-      <label>
-        <input #toCurrencyXpath
-               type="text"
-               matInput>
-      </label>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="fields">
-      <mat-label>Buy price Xpath</mat-label>
-      <label>
-        <input #buyXpath
-               type="text"
-               matInput>
-      </label>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="fields">
-      <mat-label>Sell price Xpath</mat-label>
-      <label>
-        <input #sellXpath
-               type="text"
-               matInput>
-      </label>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" class="fields">
-      <mat-label>Unit</mat-label>
-      <mat-select>
-        <mat-option #unit
-                    value="u"
-                    (blur)="selectUnit(u.unit)"
-                    (onSelectionChange)="onEnterUnit($event, u.unit)"
-                    *ngFor="let u of unitsTemp"
-        > {{ u.unit }} </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-  <div id="checkboxes">
-    <mat-checkbox id="checkboxCross"
-                  [(ngModel)]="checkedCross"
-                  name="crossCheckbox">
-      Cross inversion
-    </mat-checkbox>
-    <mat-checkbox id="checkboxExchange"
-                  [(ngModel)]="checkedExchangeUnit"
-                  name="exchCheckbox">
-      Exchange unit Xpath
-    </mat-checkbox>
-  </div>
-  <br>
-  <div *ngIf="checkedExchangeUnit">
-    <mat-form-field appearance="outline" class="fields">
-      <mat-label>Exchange unit Xpath</mat-label>
-      <label>
-        <input #exchangeunitxpath
-               (blur)="updateExchangeUnit(exchangeunitxpath.value)"
-               (keyup.enter)="updateExchangeUnit(exchangeunitxpath.value)"
-               type="text"
-               matInput>
-      </label>
-    </mat-form-field>
-  </div>
-</form>
-<button mat-raised-button id="button"
-        (click)="addBank(name.value,
+                    > {{ c.currency }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Receiver currency Xpath</mat-label>
+                <input #toCurrencyXpath
+                type="text"
+                matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Customer buy price Xpath (high value)</mat-label>
+                    <input #buyXpath
+                    type="text"
+                    matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Customer sell price Xpath(low value)</mat-label>
+                    <input #sellXpath
+                    type="text"
+                    matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Unit</mat-label>
+                <mat-select>
+                        <mat-option #unit
+                        value="u"
+                        (blur)="selectUnit(u.unit)"
+                        (onSelectionChange)="onEnterUnit($event, u.unit)"
+                        *ngFor="let u of unitsTemp"
+                        > {{ u.unit }} </mat-option>
+                    </mat-select>
+            </mat-form-field>
+          <br>
+          <section id="checkboxes">
+          <mat-checkbox id="checkboxCross"
+                        [(ngModel)]="checkedCross"
+                        name="crossCheckbox">
+            Cross inversion
+          </mat-checkbox>
+          <mat-checkbox id="checkboxExchange"
+                        [(ngModel)]="checkedExchangeUnit"
+                        name="exchCheckbox">
+            Exchange unit Xpath
+          </mat-checkbox>
+          </section>
+          <br>
+          <div *ngIf="checkedExchangeUnit">
+          <mat-form-field appearance="outline" class="fields">
+            <mat-label>Exchange unit Xpath</mat-label>
+              <input #exchangeunitxpath
+              (blur)="updateExchangeUnit(exchangeunitxpath.value)"
+              (keyup.enter)="updateExchangeUnit(exchangeunitxpath.value)"
+              type="text"
+              matInput>
+          </mat-form-field>
+          </div>
+    </form>
+    <button mat-raised-button id="button"
+    (click)="addBank(name.value,
     selectedCoun,
     url.value,
     selectedCurr,
@@ -123,8 +110,7 @@
     sellXpath.value,
     selectedUnit,
     checkedCross,
-    exchangeunitxpath)">Submit
-</button>
-<br>
-<br>
+    exchangeunitxpath)">Submit</button>
+    <br>
+    <br>
 </body>
