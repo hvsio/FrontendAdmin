@@ -3,9 +3,6 @@ import {Component, OnInit} from '@angular/core';
 import {MatIconRegistry} from '@angular/material';
 import {MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition} from '@angular/material/snack-bar';
 import {DomSanitizer} from '@angular/platform-browser';
-
-// import {Country} from '../models/Country';
-// import {Currency} from '../models/Currency';
 import {Fee} from '../models/Fee';
 import {ConfigurationService} from '../services/configuration.service';
 
@@ -19,23 +16,13 @@ export class ConfigureComponent implements OnInit {
 
   position: MatSnackBarHorizontalPosition = 'right';
   config = new MatSnackBarConfig();
-  // currencies: Currency[];
-  // countries: Country[];
   fees: Fee[];
 
   feeCoun = '';
   feeSepa = '';
   feeIntl = '';
 
-  // country: Country;
-  // avCountryInput = '';
-
-  // currency: Currency;
-  // avCurrencyInput = '';
-
   isLoadingFees = true;
-  // isLoadingCountries = true;
-  // isLoadingCurrencies = true;
 
   constructor(private registry: MatIconRegistry, private domSanitizer: DomSanitizer,
               private snackBar: MatSnackBar, private configurationService: ConfigurationService) {
@@ -72,7 +59,6 @@ export class ConfigureComponent implements OnInit {
   onEditFee(fee: Fee, sepa, intl: string) {
     fee.sepa = sepa;
     fee.intl = intl;
-    console.log(fee);
     this.configurationService.updateFee(fee).subscribe(fee => this.openSnackBar("Fee updated successfully!"));
   }
 
@@ -91,7 +77,6 @@ export class ConfigureComponent implements OnInit {
       };
       this.configurationService.addFee(fee).subscribe(country => {
         this.ngOnInit();
-        console.log(fee);
         if (this.configurationService.getResponse()!== undefined) {
           this.openSnackBar(this.configurationService.errorResponse);
           this.configurationService.errorResponse = '';
@@ -105,81 +90,11 @@ export class ConfigureComponent implements OnInit {
     } else if (!(this.checkEmptyValues(passedCountry, passedSepa, passedIntl))) {
       this.openSnackBar('Please fill all the fields to add the fee.');
     }
-    console.log("SEPA " + this.feeSepa);
-    console.log("INTL " + this.feeIntl);
-    console.log("COUNT " + this.feeCoun);
   }
 
-  // //CURRENCY PART
-  // addCurrency(name: string) {
-  //   const currency = {
-  //     name: name,
-  //     allowed: true
-  //   };
-  //   this.configurationService.addCurrency(currency).subscribe(currency => {
-  //     this.ngOnInit();
-  //     if (this.configurationService.getResponse()!== '') {
-  //       console.log('RESPONSE: ' + this.configurationService.getResponse());
-  //       this.openSnackBar(this.configurationService.errorResponse);
-  //       this.configurationService.errorResponse = '';
-  //     }
-  //   });
-  //   this.avCurrencyInput = '';
-  // }
-  //
-  // onDeleteCurr(currency) {
-  //   this.currencies = this.currencies.filter(t => t.id !== currency.id);
-  //   this.configurationService.deleteCurrency(currency).subscribe();
-  // }
-  //
-  // //COUNTRY PART
-  //
-  //
-  // onDeleteCoun(country) {
-  //   this.countries = this.countries.filter(t => t.id !== country.id);
-  //   this.configurationService.deleteCountry(country).subscribe();
-  // }
-  //
-  // addCountry(name: string) {
-  //   const country = {
-  //     name: name,
-  //     allowed: true
-  //   };
-  //   this.configurationService.addCountry(country).subscribe(country => {
-  //     this.ngOnInit();
-  //     if (this.configurationService.getResponse()!== '') {
-  //       console.log('RESPONSE: ' + this.configurationService.getResponse());
-  //       this.openSnackBar(this.configurationService.errorResponse);
-  //       this.configurationService.errorResponse = '';
-  //     }
-  //   });
-  //   this.avCountryInput = '';
-  // }
-  //
-  // onToggleCurr(obj) {
-  //   obj.allowed = !obj.allowed;
-  //   console.log(obj);
-  //   this.configurationService.updateCurrency(obj).subscribe(currency => console.log(currency));
-  // }
-  //
-  // onToggleCoun(obj) {
-  //   obj.allowed = !obj.allowed;
-  //   console.log(obj);
-  //   this.configurationService.updateCountry(obj).subscribe(country => console.log(country));
-  // }
 
   ngOnInit() {
     this.configuration();
-    // this.configurationService.getCountries().subscribe(countries => {
-    //   this.countries = countries;
-    //   console.log(this.countries);
-    //   this.isLoadingCountries = false;
-    // });
-    // this.configurationService.getCurrencies().subscribe(currencies => {
-    //   this.currencies = currencies;
-    //   console.log(this.currencies);
-    //   this.isLoadingCurrencies = false;
-    // });
     this.configurationService.getFees().subscribe(fees => {
       this.fees = fees;
       console.log(this.fees);

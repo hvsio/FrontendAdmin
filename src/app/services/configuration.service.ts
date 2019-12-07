@@ -4,8 +4,6 @@ import {HttpClient, HttpHeaders,} from '@angular/common/http';
 
 import {Fee} from '../models/Fee';
 import {environment} from '../../environments/environment.prod';
-import {Currency} from '../models/Currency';
-import {Country} from '../models/Country';
 import {catchError} from 'rxjs/operators';
 
 const httpOptions = {
@@ -15,8 +13,6 @@ const httpOptions = {
 };
 const SERVER_URL_TRIGGER = environment.scrapperTrigger + '/scrapper';
 const feesUrl: string = environment.offeredCountCurrFees + '/fees';
-const currencyUrl: string = environment.offeredCountCurrFees + '/currencies';
-const countryUrl: string = environment.offeredCountCurrFees + '/countries';
 
 
 @Injectable({
@@ -31,13 +27,10 @@ export class ConfigurationService {
   constructor(private http: HttpClient) {
   }
 
-  //SCRAPPER TRIGGER
   trigger() {
-    console.log('triggered');
     return this.http.get(`${SERVER_URL_TRIGGER}`);
   }
 
-  //FEES
   getFees(): Observable<Fee[]> {
     return this.http.get<Fee[]>(`${feesUrl}`);
   }
@@ -57,50 +50,6 @@ export class ConfigurationService {
     const url = `${feesUrl}`;
     return this.http.put(url, fee, httpOptions);
   }
-
-  //CURRENCIES
-
-  // getCurrencies(): Observable<Currency[]> {
-  //   return this.http.get<Currency[]>(`${currencyUrl}`);
-  // }
-  //
-  // deleteCurrency(currency: Currency): Observable<Currency> {
-  //   const url = `${currencyUrl}/${currency.id}`;
-  //   return this.http.delete<Currency>(url, httpOptions);
-  // }
-  //
-  // addCurrency(currency: any): Observable<any> {
-  //   return this.http.post<any>(currencyUrl, currency, httpOptions).pipe(
-  //     catchError(this.handleError<any>('data'))
-  //   );
-  // }
-  //
-  // updateCurrency(currency: Currency): Observable<any> {
-  //   const url = `${currencyUrl}`;
-  //   return this.http.put(url, currency, httpOptions);
-  // }
-  //
-  // //COUNTRIES
-  //
-  // getCountries(): Observable<Country[]> {
-  //   return this.http.get<Country[]>(`${countryUrl}`);
-  // }
-  //
-  // deleteCountry(country: Country): Observable<Country> {
-  //   const url = `${countryUrl}/${country.id}`;
-  //   return this.http.delete<Country>(url, httpOptions);
-  // }
-  //
-  // addCountry(country: any): Observable<any> {
-  //   return this.http.post<any>(countryUrl, country, httpOptions).pipe(
-  //     catchError(this.handleError<any>('data'))
-  //   );
-  // }
-  //
-  // updateCountry(country: Country): Observable<any> {
-  //   const url = `${countryUrl}`;
-  //   return this.http.put(url, country, httpOptions);
-  // }
 
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

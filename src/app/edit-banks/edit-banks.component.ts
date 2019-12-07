@@ -1,4 +1,4 @@
-import {Component, OnInit, Inject, PACKAGE_ROOT_URL} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BankService} from '../services/bank.service';
 import {Bank} from '../models/Bank';
 
