@@ -13,6 +13,7 @@
     <mat-card>
       <mat-card-header>
         <mat-card-title> COUNTRY: {{ f.country }} </mat-card-title>
+        <mat-card-title> CURRENCY: {{ f.currency }} </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         SEPA:
@@ -35,16 +36,21 @@
   <div>
     <mat-divider></mat-divider>
     <h2> Add new fee</h2>
-    <mat-form-field class="fee-input" appearance="outline">
+    <mat-form-field  class="fee-input" appearance="outline">
       <input type="text" maxlength="2" name="form" [(ngModel)]="feeCoun" placeholder="Add country..." matInput>
+      <mat-hint align="end">Insert two capital letters</mat-hint>
     </mat-form-field>
     <mat-form-field class="fee-input" appearance="outline">
-      <input type="number" name="form" [(ngModel)]="feeSepa" placeholder="Add SEPA..." matInput>
+      <input type="number" min="0" name="form" [(ngModel)]="feeSepa" placeholder="Add SEPA amount..." matInput>
     </mat-form-field>
     <mat-form-field class="fee-input" appearance="outline">
-      <input type="number" name="form" [(ngModel)]="feeIntl" placeholder="Add INTL..." matInput>
+      <input type="number" min="0" name="form" [(ngModel)]="feeIntl" placeholder="Add international amount..." matInput>
     </mat-form-field>
-    <button mat-raised-button (click)="addFee(feeCoun, feeSepa, feeIntl)" class="submit-button">Submit</button>
+    <mat-form-field class="fee-input" appearance="outline">
+      <input type="text" maxlength="3" name="form" [(ngModel)]="feeCurr" placeholder="Add currency..." matInput>
+      <mat-hint align="end">Insert three capital letters</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button (click)="addFee(feeCoun, feeSepa, feeIntl, feeCurr)" class="submit-button">Submit</button>
   </div>
 </div>
 </body>

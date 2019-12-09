@@ -21,6 +21,7 @@ export class ConfigureComponent implements OnInit {
   feeCoun = '';
   feeSepa = '';
   feeIntl = '';
+  feeCurr = '';
 
   isLoadingFees = true;
 
@@ -48,8 +49,9 @@ export class ConfigureComponent implements OnInit {
 
   //FEES PART
 
-  checkEmptyValues(sepa, intl, country: string): boolean {
-    if (sepa === '' || intl === '' || country === '' || sepa === null || intl === null || country === null) {
+  checkEmptyValues(sepa, intl, country, currency: string): boolean {
+    if (sepa === '' || intl === '' || country === '' || currency ==='' || sepa === null || intl === null
+      || country === null || currency === null) {
       return false;
     } else {
       return true;
@@ -68,9 +70,10 @@ export class ConfigureComponent implements OnInit {
     this.configurationService.deleteFee(fee).subscribe();
   }
 
-  addFee(passedCountry: string, passedSepa: string, passedIntl: string) {
-    if (this.checkEmptyValues(passedCountry, passedSepa, passedIntl)) {
+  addFee(passedCountry, passedSepa, passedIntl, passedCurrency: string) {
+    if (this.checkEmptyValues(passedCountry, passedSepa, passedIntl, passedCurrency)) {
       const fee = {
+        currency: passedCurrency,
         country: passedCountry,
         sepa: passedSepa,
         intl: passedIntl
@@ -86,8 +89,9 @@ export class ConfigureComponent implements OnInit {
         this.feeIntl = '';
         this.feeSepa = '';
         this.feeCoun = '';
+        this.feeCurr = '';
       });
-    } else if (!(this.checkEmptyValues(passedCountry, passedSepa, passedIntl))) {
+    } else if (!(this.checkEmptyValues(passedCountry, passedSepa, passedIntl, passedCurrency))) {
       this.openSnackBar('Please fill all the fields to add the fee.');
     }
   }

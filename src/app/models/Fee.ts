@@ -3,5 +3,5 @@ export class Fee {
   country: string;
   intl: string;
   sepa: string;
-
+  currency: string;
 }

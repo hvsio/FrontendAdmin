@@ -24,6 +24,10 @@ h2 {
   display: inline-grid;
 }
 
+.mat-card-title {
+  font-size: 15px;
+}
+
 .fee-details {
   width: 100%;
 }
