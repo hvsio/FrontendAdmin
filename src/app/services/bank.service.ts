@@ -70,7 +70,7 @@ export class BankService {
     return (error: any): Observable<T> => {
       console.error(`${error.error.errors}`);
       console.log(error);
-      this.setResponse(error);
+      this.setResponse(`${error.error.errors}`);
       return of(result as T);
     };
   }
